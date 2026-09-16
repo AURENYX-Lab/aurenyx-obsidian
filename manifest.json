@@ -1,7 +1,6 @@
 {
-	"name": "Sample Theme",
-	"version": "1.0.0",
-	"minAppVersion": "1.10.6",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md"
+  "name": "AURENYX",
+  "version": "1.0.0",
+  "minAppVersion": "1.13.0",
+  "author": "Daniel L. Koslowski"
 }
