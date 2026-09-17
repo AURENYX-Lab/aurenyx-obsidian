@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-AURENYX v1.0.0 — Cognitive Cartography
+AURENYX — Cognitive Cartography
 Obsidian application theme
 ===============================================================================
 
@@ -73,6 +73,31 @@ body {
   --font-interface-theme: var(--aurenyx-font-ui);
   --font-text-theme: var(--aurenyx-font-editor);
   --font-monospace-theme: var(--aurenyx-font-mono);
+
+  /* Native fallbacks (toggles, Canvas focus, plugins) share the brass accent. */
+  --accent-h: 41.4433;
+  --accent-s: 40.5858%;
+  --accent-l: 53.5294%;
+  --line-height-normal: 1.62;
+  --inline-title-font: var(--aurenyx-font-display);
+  --inline-title-weight: 600;
+  --inline-title-line-height: 1.16;
+  --h1-font: var(--aurenyx-font-display);
+  --h2-font: var(--aurenyx-font-display);
+  --h3-font: var(--aurenyx-font-display);
+  --h4-font: var(--font-interface);
+  --h5-font: var(--font-interface);
+  --h6-font: var(--font-interface);
+  --h1-weight: 600;
+  --h2-weight: 600;
+  --h3-weight: 600;
+  --h4-weight: 600;
+  --h5-weight: 600;
+  --h6-weight: 600;
+  --h1-line-height: 1.18;
+  --h2-line-height: 1.22;
+  --h3-line-height: 1.28;
+  --italic-color: var(--text-muted);
   --radius-s: 3px;
   --radius-m: 5px;
   --radius-l: 7px;
@@ -84,8 +109,7 @@ body {
   --tab-radius-active: 4px;
   --divider-width: 1px;
   --divider-color: var(--background-modifier-border);
-  --shadow-s: 0 1px 2px rgb(0 0 0 / 14%);
-  --shadow-l: 0 12px 30px rgb(0 0 0 / 18%);
+  --divider-color-hover: var(--background-modifier-border-focus);
   --icon-opacity: 0.86;
   --icon-opacity-hover: 1;
   --icon-opacity-active: 1;
@@ -95,6 +119,44 @@ body {
   --titlebar-text-color-focused: var(--text-normal);
   --ribbon-background: var(--background-secondary);
   --ribbon-background-collapsed: var(--background-secondary);
+  --metadata-background: var(--background-primary-alt);
+  --metadata-border-color: var(--background-modifier-border);
+  --metadata-border-width: 1px;
+  --metadata-border-radius: var(--radius-m);
+  --metadata-padding: var(--size-4-3);
+  --metadata-label-text-color: var(--text-muted);
+  --metadata-input-text-color: var(--text-normal);
+  --metadata-property-background-hover: var(--background-modifier-hover);
+  --metadata-property-background-active: var(--background-primary);
+  --table-header-font: var(--font-interface);
+  --table-header-weight: 600;
+  --table-header-color: var(--text-normal);
+  --table-row-alt-background-hover: var(--table-row-background-hover);
+  --table-selection: var(--text-selection);
+  --table-selection-border-color: var(--background-modifier-border-focus);
+  --tag-size: 0.875em;
+  --tag-weight: 550;
+  --tag-border-width: 1px;
+  --tag-radius: 999px;
+  --checkbox-radius: var(--radius-s);
+  --blockquote-border-thickness: 2px;
+  --code-border-width: 1px;
+  --code-radius: var(--radius-s);
+  --callout-border-width: 1px;
+  --callout-border-opacity: 0.48;
+  --callout-radius: var(--radius-m);
+  --callout-title-weight: 600;
+  --callout-blend-mode: normal;
+  --callout-important: var(--color-yellow);
+  --callout-question: var(--color-yellow);
+  --callout-quote: var(--color-cyan);
+  --nav-item-color-selected: var(--text-normal);
+  --nav-item-color-highlighted: var(--text-accent);
+  --embed-background: var(--background-primary-alt);
+  --embed-border-start: 1px solid var(--background-modifier-border);
+  --embed-border-end: 1px solid var(--background-modifier-border);
+  --embed-border-top: 1px solid var(--background-modifier-border);
+  --embed-border-bottom: 1px solid var(--background-modifier-border);
 }
 
 /* ==========================================================================
@@ -104,140 +166,147 @@ body {
 .theme-dark {
   color-scheme: dark;
 
-  --color-base-00: #11161A;
-  --color-base-05: #141A1E;
-  --color-base-10: #171D21;
-  --color-base-20: #1B2227;
-  --color-base-25: #22292E;
-  --color-base-30: #2B3338;
-  --color-base-35: #343D42;
-  --color-base-40: #465057;
+  /* Text shades keep the brand hue while clearing tinted/raised surfaces. */
+  --aurenyx-blue-ink: #7C9AC0;
+  --aurenyx-teal-ink: #69A49F;
+  --aurenyx-coral-ink: #D68A7E;
+  --aurenyx-brass-ink: #C4A767;
+  --aurenyx-control-border: #899196;
+  --input-shadow: inset 0 0 0 1px var(--aurenyx-control-border);
+  --input-shadow-hover: inset 0 0 0 1px var(--background-modifier-border-focus);
+  --color-base-00: var(--aurenyx-obsidian);
+  --color-base-05: var(--aurenyx-dark-1);
+  --color-base-10: var(--aurenyx-dark-2);
+  --color-base-20: var(--aurenyx-carbon);
+  --color-base-25: var(--aurenyx-dark-3);
+  --color-base-30: var(--aurenyx-dark-4);
+  --color-base-35: var(--aurenyx-dark-5);
+  --color-base-40: var(--aurenyx-dark-6);
   --color-base-50: #667077;
   --color-base-60: #899196;
   --color-base-70: #B0B2AE;
-  --color-base-100: #F2EFE7;
-  --background-primary: #11161A;
-  --background-primary-alt: #171D21;
-  --background-secondary: #1B2227;
-  --background-secondary-alt: #22292E;
-  --background-modifier-hover: #22292E;
-  --background-modifier-active-hover: #2B3338;
-  --background-modifier-border: #343D42;
-  --background-modifier-border-hover: #465057;
-  --background-modifier-border-focus: #B99A58;
-  --background-modifier-form-field: #171D21;
-  --background-modifier-message: #1B2227;
+  --color-base-100: var(--aurenyx-ivory);
+  --background-primary: var(--aurenyx-obsidian);
+  --background-primary-alt: var(--aurenyx-dark-2);
+  --background-secondary: var(--aurenyx-carbon);
+  --background-secondary-alt: var(--aurenyx-dark-3);
+  --background-modifier-hover: var(--aurenyx-dark-3);
+  --background-modifier-active-hover: var(--aurenyx-dark-4);
+  --background-modifier-border: var(--aurenyx-dark-5);
+  --background-modifier-border-hover: var(--aurenyx-dark-6);
+  --background-modifier-border-focus: var(--aurenyx-brass);
+  --background-modifier-form-field: var(--aurenyx-dark-2);
+  --background-modifier-message: var(--aurenyx-carbon);
   --background-modifier-error: color-mix(in oklch, #C86F61 16%, #1B2227);
   --background-modifier-error-hover: color-mix(in oklch, #C86F61 24%, #1B2227);
   --background-modifier-success: color-mix(in oklch, #4F8F8A 14%, #1B2227);
-  --interactive-normal: #1B2227;
-  --interactive-hover: #22292E;
-  --interactive-accent: #B99A58;
+  --interactive-normal: var(--aurenyx-carbon);
+  --interactive-hover: var(--aurenyx-dark-3);
+  --interactive-accent: var(--aurenyx-brass);
   --interactive-accent-hover: #C4A767;
-  --text-normal: #F2EFE7;
+  --text-normal: var(--aurenyx-ivory);
   --text-muted: #B0B2AE;
   --text-faint: #899196;
-  --text-on-accent: #11161A;
-  --text-on-accent-inverted: #F2EFE7;
-  --text-accent: #B99A58;
-  --text-accent-hover: #C4A767;
-  --text-error: #C86F61;
-  --text-warning: #B99A58;
-  --text-success: #4F8F8A;
+  --text-on-accent: var(--aurenyx-obsidian);
+  --text-on-accent-inverted: var(--aurenyx-ivory);
+  --text-accent: var(--aurenyx-brass-ink);
+  --text-accent-hover: #D3BA80;
+  --text-error: var(--aurenyx-coral-ink);
+  --text-warning: var(--aurenyx-brass-ink);
+  --text-success: var(--aurenyx-teal-ink);
   --text-selection: color-mix(in oklch, #B99A58 40%, transparent);
   --text-highlight-bg: color-mix(in oklch, #B99A58 22%, transparent);
-  --caret-color: #B99A58;
-  --color-red: #C86F61;
-  --color-orange: #C86F61;
-  --color-yellow: #B99A58;
-  --color-green: #4F8F8A;
-  --color-cyan: #4F8F8A;
-  --color-blue: #6689B7;
-  --color-purple: #6689B7;
-  --color-pink: #C86F61;
-  --link-color: #6689B7;
-  --link-color-hover: #7C9AC0;
-  --link-unresolved-color: #899196;
-  --link-unresolved-opacity: 0.85;
-  --link-external-color: #4F8F8A;
-  --link-external-color-hover: #69A49F;
-  --tag-color: #B0B2AE;
-  --tag-color-hover: #F2EFE7;
-  --tag-background: #1B2227;
-  --tag-background-hover: #22292E;
-  --tag-border-color: #343D42;
-  --tag-border-color-hover: #B99A58;
-  --blockquote-border-color: #4F8F8A;
-  --blockquote-color: #B0B2AE;
-  --blockquote-background-color: #171D21;
-  --code-background: #171D21;
-  --code-normal: #F2EFE7;
-  --code-comment: #899196;
-  --code-function: #B99A58;
-  --code-important: #C86F61;
-  --code-keyword: #6689B7;
-  --code-operator: #B0B2AE;
-  --code-property: #4F8F8A;
-  --code-punctuation: #899196;
-  --code-string: #4F8F8A;
-  --code-tag: #C86F61;
-  --code-value: #B99A58;
+  --caret-color: var(--aurenyx-brass);
+  --color-red: var(--aurenyx-coral-ink);
+  --color-orange: var(--aurenyx-coral-ink);
+  --color-yellow: var(--aurenyx-brass-ink);
+  --color-green: var(--aurenyx-teal-ink);
+  --color-cyan: var(--aurenyx-teal-ink);
+  --color-blue: var(--aurenyx-blue-ink);
+  --color-purple: var(--aurenyx-blue-ink);
+  --color-pink: var(--aurenyx-coral-ink);
+  --link-color: var(--aurenyx-blue-ink);
+  --link-color-hover: #A2BBDC;
+  --link-unresolved-color: var(--text-faint);
+  --link-unresolved-opacity: 1;
+  --link-external-color: var(--aurenyx-teal-ink);
+  --link-external-color-hover: #8DBDB8;
+  --tag-color: var(--text-muted);
+  --tag-color-hover: var(--text-normal);
+  --tag-background: var(--aurenyx-carbon);
+  --tag-background-hover: var(--aurenyx-dark-3);
+  --tag-border-color: var(--aurenyx-dark-5);
+  --tag-border-color-hover: var(--aurenyx-brass);
+  --blockquote-border-color: var(--aurenyx-teal);
+  --blockquote-color: var(--text-muted);
+  --blockquote-background-color: var(--background-primary-alt);
+  --code-background: var(--background-primary-alt);
+  --code-normal: var(--text-normal);
+  --code-comment: var(--text-faint);
+  --code-function: var(--aurenyx-brass-ink);
+  --code-important: var(--aurenyx-coral-ink);
+  --code-keyword: var(--aurenyx-blue-ink);
+  --code-operator: var(--text-muted);
+  --code-property: var(--aurenyx-teal-ink);
+  --code-punctuation: var(--text-faint);
+  --code-string: var(--aurenyx-teal-ink);
+  --code-tag: var(--aurenyx-coral-ink);
+  --code-value: var(--aurenyx-brass-ink);
   --table-background: transparent;
-  --table-border-color: #343D42;
-  --table-header-background: #1B2227;
-  --table-header-background-hover: #22292E;
-  --table-row-alt-background: #141A1E;
-  --table-row-background-hover: #171D21;
-  --hr-color: #343D42;
-  --checkbox-color: #B99A58;
+  --table-border-color: var(--aurenyx-dark-5);
+  --table-header-background: var(--background-secondary);
+  --table-header-background-hover: var(--background-secondary-alt);
+  --table-row-alt-background: var(--aurenyx-dark-1);
+  --table-row-background-hover: var(--aurenyx-dark-2);
+  --hr-color: var(--aurenyx-dark-5);
+  --checkbox-color: var(--aurenyx-brass);
   --checkbox-color-hover: #C4A767;
-  --checkbox-border-color: #667077;
-  --checkbox-border-color-hover: #B99A58;
-  --checkbox-marker-color: #11161A;
-  --checklist-done-color: #899196;
-  --nav-item-color: #B0B2AE;
-  --nav-item-color-hover: #F2EFE7;
-  --nav-item-color-active: #F2EFE7;
-  --nav-item-background-hover: #22292E;
-  --nav-item-background-active: #171D21;
-  --nav-item-background-selected: #22292E;
-  --tab-background-active: #171D21;
-  --tab-container-background: #1B2227;
-  --tab-divider-color: #343D42;
-  --tab-outline-color: #343D42;
-  --tab-text-color: #899196;
-  --tab-text-color-active: #F2EFE7;
-  --tab-text-color-focused: #B0B2AE;
-  --tab-text-color-focused-active: #F2EFE7;
-  --tab-text-color-focused-highlighted: #F2EFE7;
-  --tab-text-color-focused-active-current: #F2EFE7;
-  --status-bar-background: #1B2227;
-  --status-bar-border-color: #343D42;
-  --status-bar-text-color: #899196;
-  --modal-background: #1B2227;
-  --modal-border-color: #343D42;
-  --prompt-background: #1B2227;
-  --prompt-border-color: #343D42;
-  --suggestion-background: #1B2227;
-  --suggestion-highlight-color: #22292E;
+  --checkbox-border-color: var(--aurenyx-control-border);
+  --checkbox-border-color-hover: var(--aurenyx-brass);
+  --checkbox-marker-color: var(--aurenyx-obsidian);
+  --checklist-done-color: var(--text-faint);
+  --nav-item-color: var(--text-muted);
+  --nav-item-color-hover: var(--text-normal);
+  --nav-item-color-active: var(--text-normal);
+  --nav-item-background-hover: var(--aurenyx-dark-3);
+  --nav-item-background-active: var(--aurenyx-dark-2);
+  --nav-item-background-selected: var(--aurenyx-dark-3);
+  --tab-background-active: var(--aurenyx-dark-2);
+  --tab-container-background: var(--aurenyx-carbon);
+  --tab-divider-color: var(--aurenyx-dark-5);
+  --tab-outline-color: var(--aurenyx-dark-5);
+  --tab-text-color: var(--text-faint);
+  --tab-text-color-active: var(--text-normal);
+  --tab-text-color-focused: var(--text-muted);
+  --tab-text-color-focused-active: var(--text-normal);
+  --tab-text-color-focused-highlighted: var(--text-normal);
+  --tab-text-color-focused-active-current: var(--text-normal);
+  --status-bar-background: var(--aurenyx-carbon);
+  --status-bar-border-color: var(--aurenyx-dark-5);
+  --status-bar-text-color: var(--text-faint);
+  --modal-background: var(--aurenyx-carbon);
+  --modal-border-color: var(--aurenyx-dark-5);
+  --prompt-background: var(--aurenyx-carbon);
+  --prompt-border-color: var(--aurenyx-dark-5);
+  --suggestion-background: var(--aurenyx-carbon);
   --scrollbar-bg: transparent;
-  --scrollbar-thumb-bg: #343D42;
-  --scrollbar-active-thumb-bg: #465057;
-  --graph-line: #343D42;
+  --scrollbar-thumb-bg: var(--aurenyx-dark-5);
+  --scrollbar-active-thumb-bg: var(--aurenyx-dark-6);
+  --graph-line: var(--aurenyx-control-border);
   --graph-node: #B0B2AE;
-  --graph-node-focused: #B99A58;
-  --graph-node-tag: #4F8F8A;
-  --graph-node-attachment: #6689B7;
-  --graph-node-unresolved: #C86F61;
-  --canvas-background: #11161A;
-  --canvas-card-label-color: #899196;
-  --canvas-color-1: #C86F61;
-  --canvas-color-2: #C86F61;
-  --canvas-color-3: #B99A58;
-  --canvas-color-4: #4F8F8A;
-  --canvas-color-5: #6689B7;
-  --canvas-color-6: #4F8F8A;
-  --canvas-dot-pattern: #2B3338;
+  --graph-node-focused: var(--aurenyx-brass-ink);
+  --graph-node-tag: var(--aurenyx-teal-ink);
+  --graph-node-attachment: var(--aurenyx-blue-ink);
+  --graph-node-unresolved: var(--aurenyx-coral-ink);
+  --canvas-background: var(--aurenyx-obsidian);
+  --canvas-card-label-color: var(--text-faint);
+  --canvas-color-1: var(--aurenyx-coral);
+  --canvas-color-2: var(--aurenyx-coral);
+  --canvas-color-3: var(--aurenyx-brass);
+  --canvas-color-4: var(--aurenyx-teal);
+  --canvas-color-5: var(--aurenyx-blue);
+  --canvas-color-6: var(--aurenyx-teal);
+  --canvas-dot-pattern: var(--aurenyx-dark-4);
 }
 
 /* ==========================================================================
@@ -247,291 +316,198 @@ body {
 .theme-light {
   color-scheme: light;
 
-  --color-base-00: #F2EFE7;
-  --color-base-05: #ECE8DE;
-  --color-base-10: #E7E2D7;
-  --color-base-20: #DED8CC;
-  --color-base-25: #CFC8BC;
-  --color-base-30: #B7B0A5;
+  --aurenyx-blue-ink: #375882;
+  --aurenyx-teal-ink: #2C5C58;
+  --aurenyx-coral-ink: #8B4038;
+  --aurenyx-brass-ink: #695425;
+  --aurenyx-control-border: #74736F;
+  --input-shadow: inset 0 0 0 1px var(--aurenyx-control-border);
+  --input-shadow-hover: inset 0 0 0 1px var(--background-modifier-border-focus);
+  --color-base-00: var(--aurenyx-ivory);
+  --color-base-05: var(--aurenyx-light-1);
+  --color-base-10: var(--aurenyx-light-2);
+  --color-base-20: var(--aurenyx-light-3);
+  --color-base-25: var(--aurenyx-light-4);
+  --color-base-30: var(--aurenyx-light-5);
   --color-base-35: #A29C93;
-  --color-base-40: #918D86;
+  --color-base-40: var(--aurenyx-light-6);
   --color-base-50: #74736F;
   --color-base-60: #5D6060;
-  --color-base-70: #343D42;
-  --color-base-100: #11161A;
-  --background-primary: #F2EFE7;
-  --background-primary-alt: #ECE8DE;
-  --background-secondary: #E7E2D7;
-  --background-secondary-alt: #DED8CC;
-  --background-modifier-hover: #E7E2D7;
-  --background-modifier-active-hover: #DED8CC;
-  --background-modifier-border: #CFC8BC;
-  --background-modifier-border-hover: #B7B0A5;
-  --background-modifier-border-focus: #866C32;
-  --background-modifier-form-field: #F7F4EC;
-  --background-modifier-message: #E7E2D7;
+  --color-base-70: var(--aurenyx-dark-5);
+  --color-base-100: var(--aurenyx-obsidian);
+  --background-primary: var(--aurenyx-ivory);
+  --background-primary-alt: var(--aurenyx-light-1);
+  --background-secondary: var(--aurenyx-light-2);
+  --background-secondary-alt: var(--aurenyx-light-3);
+  --background-modifier-hover: var(--aurenyx-light-2);
+  --background-modifier-active-hover: var(--aurenyx-light-3);
+  --background-modifier-border: var(--aurenyx-light-4);
+  --background-modifier-border-hover: var(--aurenyx-light-5);
+  --background-modifier-border-focus: var(--aurenyx-brass-ink);
+  --background-modifier-form-field: var(--aurenyx-light-0);
+  --background-modifier-message: var(--aurenyx-light-2);
   --background-modifier-error: color-mix(in oklch, #C86F61 15%, #F2EFE7);
   --background-modifier-error-hover: color-mix(in oklch, #C86F61 23%, #F2EFE7);
   --background-modifier-success: color-mix(in oklch, #4F8F8A 13%, #F2EFE7);
-  --interactive-normal: #ECE8DE;
-  --interactive-hover: #E7E2D7;
-  --interactive-accent: #B99A58;
+  --interactive-normal: var(--aurenyx-light-1);
+  --interactive-hover: var(--aurenyx-light-2);
+  --interactive-accent: var(--aurenyx-brass);
   --interactive-accent-hover: #A88745;
-  --text-normal: #11161A;
+  --text-normal: var(--aurenyx-obsidian);
   --text-muted: #4E5558;
-  --text-faint: #74736F;
-  --text-on-accent: #11161A;
-  --text-on-accent-inverted: #F2EFE7;
-  --text-accent: #866C32;
-  --text-accent-hover: #6F5828;
-  --text-error: #A54F44;
-  --text-warning: #866C32;
-  --text-success: #376E6A;
+  --text-faint: #5B5E5E;
+  --text-on-accent: var(--aurenyx-obsidian);
+  --text-on-accent-inverted: var(--aurenyx-ivory);
+  --text-accent: var(--aurenyx-brass-ink);
+  --text-accent-hover: #5D491E;
+  --text-error: var(--aurenyx-coral-ink);
+  --text-warning: var(--aurenyx-brass-ink);
+  --text-success: var(--aurenyx-teal-ink);
   --text-selection: color-mix(in oklch, #B99A58 35%, transparent);
   --text-highlight-bg: color-mix(in oklch, #B99A58 24%, transparent);
   --caret-color: #866C32;
-  --color-red: #A54F44;
-  --color-orange: #A54F44;
-  --color-yellow: #866C32;
-  --color-green: #376E6A;
-  --color-cyan: #376E6A;
-  --color-blue: #476B9B;
-  --color-purple: #476B9B;
-  --color-pink: #A54F44;
-  --link-color: #476B9B;
-  --link-color-hover: #355A8A;
-  --link-unresolved-color: #74736F;
-  --link-unresolved-opacity: 0.9;
-  --link-external-color: #376E6A;
-  --link-external-color-hover: #285E5A;
-  --tag-color: #4E5558;
-  --tag-color-hover: #11161A;
-  --tag-background: #ECE8DE;
-  --tag-background-hover: #E7E2D7;
-  --tag-border-color: #CFC8BC;
+  --color-red: var(--aurenyx-coral-ink);
+  --color-orange: var(--aurenyx-coral-ink);
+  --color-yellow: var(--aurenyx-brass-ink);
+  --color-green: var(--aurenyx-teal-ink);
+  --color-cyan: var(--aurenyx-teal-ink);
+  --color-blue: var(--aurenyx-blue-ink);
+  --color-purple: var(--aurenyx-blue-ink);
+  --color-pink: var(--aurenyx-coral-ink);
+  --link-color: var(--aurenyx-blue-ink);
+  --link-color-hover: #294970;
+  --link-unresolved-color: var(--text-faint);
+  --link-unresolved-opacity: 1;
+  --link-external-color: var(--aurenyx-teal-ink);
+  --link-external-color-hover: #244D4A;
+  --tag-color: var(--text-muted);
+  --tag-color-hover: var(--text-normal);
+  --tag-background: var(--aurenyx-light-1);
+  --tag-background-hover: var(--aurenyx-light-2);
+  --tag-border-color: var(--aurenyx-light-4);
   --tag-border-color-hover: #866C32;
-  --blockquote-border-color: #4F8F8A;
-  --blockquote-color: #4E5558;
-  --blockquote-background-color: #ECE8DE;
-  --code-background: #ECE8DE;
-  --code-normal: #11161A;
-  --code-comment: #74736F;
-  --code-function: #866C32;
-  --code-important: #A54F44;
-  --code-keyword: #476B9B;
-  --code-operator: #4E5558;
-  --code-property: #376E6A;
-  --code-punctuation: #74736F;
-  --code-string: #376E6A;
-  --code-tag: #A54F44;
-  --code-value: #866C32;
+  --blockquote-border-color: var(--aurenyx-teal);
+  --blockquote-color: var(--text-muted);
+  --blockquote-background-color: var(--background-primary-alt);
+  --code-background: var(--background-primary-alt);
+  --code-normal: var(--text-normal);
+  --code-comment: var(--text-faint);
+  --code-function: var(--aurenyx-brass-ink);
+  --code-important: var(--aurenyx-coral-ink);
+  --code-keyword: var(--aurenyx-blue-ink);
+  --code-operator: var(--text-muted);
+  --code-property: var(--aurenyx-teal-ink);
+  --code-punctuation: var(--text-faint);
+  --code-string: var(--aurenyx-teal-ink);
+  --code-tag: var(--aurenyx-coral-ink);
+  --code-value: var(--aurenyx-brass-ink);
   --table-background: transparent;
-  --table-border-color: #CFC8BC;
-  --table-header-background: #E7E2D7;
-  --table-header-background-hover: #DED8CC;
-  --table-row-alt-background: #ECE8DE;
-  --table-row-background-hover: #E7E2D7;
-  --hr-color: #CFC8BC;
-  --checkbox-color: #B99A58;
+  --table-border-color: var(--aurenyx-light-4);
+  --table-header-background: var(--background-secondary);
+  --table-header-background-hover: var(--background-secondary-alt);
+  --table-row-alt-background: var(--aurenyx-light-1);
+  --table-row-background-hover: var(--aurenyx-light-2);
+  --hr-color: var(--aurenyx-light-4);
+  --checkbox-color: var(--aurenyx-brass);
   --checkbox-color-hover: #A88745;
-  --checkbox-border-color: #918D86;
+  --checkbox-border-color: var(--aurenyx-control-border);
   --checkbox-border-color-hover: #866C32;
-  --checkbox-marker-color: #11161A;
-  --checklist-done-color: #74736F;
-  --nav-item-color: #4E5558;
-  --nav-item-color-hover: #11161A;
-  --nav-item-color-active: #11161A;
-  --nav-item-background-hover: #E7E2D7;
-  --nav-item-background-active: #ECE8DE;
-  --nav-item-background-selected: #E7E2D7;
-  --tab-background-active: #F2EFE7;
-  --tab-container-background: #E7E2D7;
-  --tab-divider-color: #CFC8BC;
-  --tab-outline-color: #CFC8BC;
-  --tab-text-color: #74736F;
-  --tab-text-color-active: #11161A;
-  --tab-text-color-focused: #4E5558;
-  --tab-text-color-focused-active: #11161A;
-  --tab-text-color-focused-highlighted: #11161A;
-  --tab-text-color-focused-active-current: #11161A;
-  --status-bar-background: #E7E2D7;
-  --status-bar-border-color: #CFC8BC;
-  --status-bar-text-color: #74736F;
-  --modal-background: #F2EFE7;
-  --modal-border-color: #CFC8BC;
-  --prompt-background: #F2EFE7;
-  --prompt-border-color: #CFC8BC;
-  --suggestion-background: #F2EFE7;
-  --suggestion-highlight-color: #E7E2D7;
+  --checkbox-marker-color: var(--aurenyx-obsidian);
+  --checklist-done-color: var(--text-faint);
+  --nav-item-color: var(--text-muted);
+  --nav-item-color-hover: var(--text-normal);
+  --nav-item-color-active: var(--text-normal);
+  --nav-item-background-hover: var(--aurenyx-light-2);
+  --nav-item-background-active: var(--aurenyx-light-1);
+  --nav-item-background-selected: var(--aurenyx-light-2);
+  --tab-background-active: var(--aurenyx-ivory);
+  --tab-container-background: var(--aurenyx-light-2);
+  --tab-divider-color: var(--aurenyx-light-4);
+  --tab-outline-color: var(--aurenyx-light-4);
+  --tab-text-color: var(--text-faint);
+  --tab-text-color-active: var(--text-normal);
+  --tab-text-color-focused: var(--text-muted);
+  --tab-text-color-focused-active: var(--text-normal);
+  --tab-text-color-focused-highlighted: var(--text-normal);
+  --tab-text-color-focused-active-current: var(--text-normal);
+  --status-bar-background: var(--aurenyx-light-2);
+  --status-bar-border-color: var(--aurenyx-light-4);
+  --status-bar-text-color: var(--text-faint);
+  --modal-background: var(--aurenyx-ivory);
+  --modal-border-color: var(--aurenyx-light-4);
+  --prompt-background: var(--aurenyx-ivory);
+  --prompt-border-color: var(--aurenyx-light-4);
+  --suggestion-background: var(--aurenyx-ivory);
   --scrollbar-bg: transparent;
-  --scrollbar-thumb-bg: #CFC8BC;
-  --scrollbar-active-thumb-bg: #B7B0A5;
-  --graph-line: #CFC8BC;
+  --scrollbar-thumb-bg: var(--aurenyx-light-4);
+  --scrollbar-active-thumb-bg: var(--aurenyx-light-5);
+  --graph-line: var(--aurenyx-control-border);
   --graph-node: #4E5558;
-  --graph-node-focused: #866C32;
-  --graph-node-tag: #376E6A;
-  --graph-node-attachment: #476B9B;
-  --graph-node-unresolved: #A54F44;
-  --canvas-background: #F2EFE7;
-  --canvas-card-label-color: #74736F;
+  --graph-node-focused: var(--aurenyx-brass-ink);
+  --graph-node-tag: var(--aurenyx-teal-ink);
+  --graph-node-attachment: var(--aurenyx-blue-ink);
+  --graph-node-unresolved: var(--aurenyx-coral-ink);
+  --canvas-background: var(--aurenyx-ivory);
+  --canvas-card-label-color: var(--text-faint);
   --canvas-color-1: #A54F44;
   --canvas-color-2: #A54F44;
   --canvas-color-3: #866C32;
   --canvas-color-4: #376E6A;
   --canvas-color-5: #476B9B;
   --canvas-color-6: #376E6A;
-  --canvas-dot-pattern: #CFC8BC;
+  --canvas-dot-pattern: var(--aurenyx-light-4);
 }
 
 /* ==========================================================================
-   04 / TYPOGRAPHY — QUIET AUTHORITY
+   04 / TYPOGRAPHY — RESPECT NATIVE FONT OVERRIDES
    ========================================================================== */
 
-.markdown-source-view,
-.markdown-preview-view {
-  font-family: var(--aurenyx-font-editor);
-}
-
+/* Font families, weights and line heights are configured through native
+   variables above, so Reading, Live Preview and user font choices agree. */
 .inline-title,
-.markdown-rendered h1,
-.markdown-rendered h2,
-.markdown-rendered h3,
-.markdown-source-view.mod-cm6 .cm-header-1,
-.markdown-source-view.mod-cm6 .cm-header-2,
-.markdown-source-view.mod-cm6 .cm-header-3 {
-  font-family: var(--aurenyx-font-display);
+.markdown-rendered :is(h1, h2, h3),
+.markdown-source-view.mod-cm6 :is(.cm-header-1, .cm-header-2, .cm-header-3) {
   letter-spacing: -0.012em;
 }
 
-.inline-title {
-  color: var(--text-normal);
-  font-weight: 600;
-  line-height: 1.16;
-}
-
-.markdown-rendered h1,
-.markdown-source-view.mod-cm6 .cm-header-1 {
-  font-weight: 600;
-  line-height: 1.18;
-}
-
-.markdown-rendered h2,
-.markdown-source-view.mod-cm6 .cm-header-2 {
-  font-weight: 600;
-  line-height: 1.22;
-}
-
-.markdown-rendered h3,
-.markdown-source-view.mod-cm6 .cm-header-3 {
-  font-weight: 600;
-  line-height: 1.28;
-}
-
-.markdown-rendered h4,
-.markdown-rendered h5,
-.markdown-rendered h6,
-.markdown-source-view.mod-cm6 .cm-header-4,
-.markdown-source-view.mod-cm6 .cm-header-5,
-.markdown-source-view.mod-cm6 .cm-header-6 {
-  font-family: var(--aurenyx-font-ui);
-  font-weight: 650;
+.markdown-rendered :is(h4, h5, h6),
+.markdown-source-view.mod-cm6 :is(.cm-header-4, .cm-header-5, .cm-header-6) {
   letter-spacing: 0.01em;
 }
 
-.markdown-rendered strong,
-.cm-strong {
-  font-weight: 700;
-}
-
-.markdown-rendered em,
-.cm-em {
-  color: var(--text-muted);
-}
-
-code,
-pre,
 .markdown-rendered code,
-.cm-inline-code {
-  font-family: var(--aurenyx-font-mono);
+.markdown-source-view.mod-cm6 .cm-inline-code {
   font-variant-ligatures: none;
 }
 
 /* ==========================================================================
-   05 / WORKSPACE — BOUNDED SPACES
+   05 / WORKSPACE + NAVIGATION — BOUNDED SPACES
    ========================================================================== */
 
-.workspace,
-.workspace-split,
-.workspace-tabs,
-.workspace-tab-container,
-.workspace-leaf {
-  background: var(--background-primary);
+/* Native tab ::before/::after draw the tab curves. Leave them intact. */
+.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner {
+  box-shadow: inset 0 -2px 0 var(--background-modifier-border-focus);
 }
-
-.workspace-ribbon,
-.side-dock-settings,
-.workspace-sidedock-vault-profile {
-  background: var(--background-secondary);
-}
-
-.workspace-split.mod-left-split,
-.workspace-split.mod-right-split {
-  background: var(--background-secondary);
-}
-
-.workspace-tab-header-container {
-  background: var(--tab-container-background);
-  border-bottom: 1px solid var(--tab-divider-color);
-}
-
-.workspace-tab-header {
-  position: relative;
-}
-
-.workspace-tab-header.is-active {
-  background: var(--tab-background-active);
-  color: var(--text-normal);
-}
-
-/* Directional tension: a restrained, asymmetrical active-state vector. */
-.workspace-tab-header.is-active::after {
-  content: "";
-  position: absolute;
-  inset-inline: 18%;
-  bottom: 0;
-  height: 2px;
-  background: linear-gradient(
-    105deg,
-    transparent 0 8%,
-    var(--aurenyx-brass) 8% 92%,
-    transparent 92% 100%
-  );
-  pointer-events: none;
-}
-
-.workspace-tab-header-inner-title {
-  font-family: var(--aurenyx-font-ui);
-}
-
-.workspace-leaf-resize-handle {
-  background-color: var(--background-modifier-border);
-}
-
-.workspace-leaf-resize-handle:hover {
-  background-color: var(--background-modifier-border-focus);
-}
-
-/* ==========================================================================
-   06 / NAVIGATION — STRUCTURE WITHOUT VISUAL NOISE
-   ========================================================================== */
 
 .nav-file-title,
-.nav-folder-title {
-  border-radius: 3px;
+.nav-folder-title,
+.tree-item-self,
+.suggestion-item,
+.vertical-tab-nav-item {
+  border-radius: var(--radius-s);
 }
 
-.nav-file-title.is-active {
-  box-shadow: inset 2px 0 0 var(--aurenyx-brass);
+.nav-file-title.is-active,
+.suggestion-item.is-selected,
+.vertical-tab-nav-item.is-active,
+.outline .tree-item-self.is-active {
+  box-shadow: inset 2px 0 0 var(--background-modifier-border-focus);
+}
+
+/* Keep the active marker at the reading start in RTL workspaces. */
+body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
+  .vertical-tab-nav-item.is-active, .outline .tree-item-self.is-active) {
+  box-shadow: inset -2px 0 0 var(--background-modifier-border-focus);
 }
 
 .nav-folder-title-content {
@@ -539,29 +515,15 @@ pre,
 }
 
 .nav-file-tag {
-  color: var(--text-faint);
-  font-family: var(--aurenyx-font-mono);
-  font-size: 0.78em;
+  font-family: var(--font-monospace);
 }
 
-.search-result-file-title,
-.tree-item-self {
-  border-radius: 3px;
-}
-
-.search-result-file-match {
-  color: var(--text-normal);
-  background: var(--text-highlight-bg);
-}
+/* Search already highlights .search-result-file-matched-text. Do not paint
+   the whole match row: hover and keyboard selection belong to Obsidian. */
 
 /* ==========================================================================
-   07 / EDITOR + READING VIEW
+   06 / EDITOR + READING — COHERENT CONTENT
    ========================================================================== */
-
-.markdown-source-view.mod-cm6 .cm-scroller,
-.markdown-preview-view {
-  line-height: 1.62;
-}
 
 .markdown-source-view.mod-cm6 .cm-gutters {
   background: var(--background-primary);
@@ -573,17 +535,9 @@ pre,
   background: color-mix(in oklch, var(--background-secondary) 42%, transparent);
 }
 
-.markdown-rendered hr {
-  border-color: var(--hr-color);
-}
-
 .markdown-rendered blockquote {
-  border-inline-start-width: 2px;
-  border-inline-start-color: var(--aurenyx-teal);
-  background: var(--blockquote-background-color);
   padding-block: 0.55em;
   padding-inline: 1em;
-  color: var(--blockquote-color);
 }
 
 .markdown-rendered mark,
@@ -594,352 +548,157 @@ pre,
 }
 
 .markdown-rendered kbd {
-  font-family: var(--aurenyx-font-mono);
+  font-family: var(--font-monospace);
   color: var(--text-normal);
   background: var(--background-secondary);
   border: 1px solid var(--background-modifier-border);
   border-bottom-color: var(--background-modifier-border-hover);
-  border-radius: 3px;
+  border-radius: var(--radius-s);
   box-shadow: none;
 }
 
-/* ==========================================================================
-   08 / LINKS — ORIENTATION VS SOURCES
-   ========================================================================== */
-
-/* Internal links = orientation / system relationships / Strategy blue. */
-
-/* External links = source / evidence relation / Teal. */
-
-/* ==========================================================================
-   09 / PROPERTIES + METADATA — EVIDENCE LAYER
-   ========================================================================== */
-
-.metadata-container {
-  border: 1px solid var(--background-modifier-border);
-  border-radius: 5px;
-  background: var(--background-primary-alt);
+/* Table geometry, editor selection handles, list indentation, code fences
+   and tag segment joins stay native; shared variables style both modes. */
+.tag,
+.cm-hashtag {
+  font-family: var(--font-interface);
 }
+
+/* ==========================================================================
+   07 / PROPERTIES — EVIDENCE LAYER
+   ========================================================================== */
 
 .metadata-properties-heading {
-  font-family: var(--aurenyx-font-ui);
   color: var(--text-muted);
-  font-weight: 650;
   letter-spacing: 0.035em;
   text-transform: uppercase;
-}
-
-.metadata-property-key {
-  color: var(--text-muted);
-  font-family: var(--aurenyx-font-ui);
-}
-
-.metadata-property-value {
-  color: var(--text-normal);
 }
 
 .metadata-input-longtext,
 .metadata-input-text,
 .metadata-link,
 .metadata-property-value .multi-select-pill {
-  font-family: var(--aurenyx-font-mono);
+  font-family: var(--font-monospace);
 }
 
 /* ==========================================================================
-   10 / TABLES — EXECUTIVE CLARITY
+   08 / CALLOUTS — EXPLICIT SEMANTICS
    ========================================================================== */
-
-.markdown-rendered table {
-  border-collapse: separate;
-  border-spacing: 0;
-  border: 1px solid var(--table-border-color);
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.markdown-rendered th {
-  font-family: var(--aurenyx-font-ui);
-  font-weight: 650;
-  letter-spacing: 0.015em;
-}
-
-.markdown-rendered th,
-.markdown-rendered td {
-  border-color: var(--table-border-color);
-}
-
-.markdown-rendered th {
-  background: var(--table-header-background);
-}
-
-/* ==========================================================================
-   11 / CODE + EVIDENCE.LOG
-   ========================================================================== */
-
-.markdown-rendered pre {
-  border: 1px solid var(--background-modifier-border);
-  border-radius: 5px;
-  box-shadow: none;
-}
-
-.markdown-rendered code {
-  border-radius: 3px;
-}
-
-.markdown-rendered pre code {
-  color: var(--code-normal);
-}
-
-/* ==========================================================================
-   12 / TAGS — LABELS, NOT DECORATION
-   ========================================================================== */
-
-.tag,
-.cm-hashtag {
-  border: 1px solid var(--tag-border-color);
-  border-radius: 999px;
-  font-family: var(--aurenyx-font-ui);
-  font-size: 0.82em;
-  font-weight: 550;
-  text-decoration: none;
-}
-
-.tag:hover,
-.cm-hashtag:hover {
-  border-color: var(--tag-border-color-hover);
-}
-
-/* ==========================================================================
-   13 / CHECKBOXES + TASKS — HUMAN ACTION
-   ========================================================================== */
-
-input[type="checkbox"] {
-  border-radius: 3px;
-}
-
-.task-list-item.is-checked {
-  color: var(--checklist-done-color);
-}
-
-.task-list-item.is-checked > .task-list-item-checkbox {
-  box-shadow: 0 0 0 1px color-mix(in oklch, var(--aurenyx-brass) 35%, transparent);
-}
-
-/* ==========================================================================
-   14 / CALLOUTS — EXPLICIT SEMANTICS
-   ========================================================================== */
-
-.callout {
-  --callout-border-width: 1px;
-  --callout-border-opacity: 0.48;
-  --callout-radius: 5px;
-
-  box-shadow: none;
-}
 
 .callout-title {
-  font-family: var(--aurenyx-font-ui);
-  font-weight: 650;
+  font-family: var(--font-interface);
 }
 
 .callout-content {
   color: var(--text-normal);
 }
 
-/* Core Obsidian callouts compressed into the AURENYX semantic palette. */
-.callout[data-callout="note"],
-.callout[data-callout="info"],
-.callout[data-callout="todo"] {
-  --callout-color: #6689B7;
-}
-
-.callout[data-callout="abstract"],
-.callout[data-callout="summary"],
-.callout[data-callout="tldr"],
-.callout[data-callout="tip"],
-.callout[data-callout="hint"] {
-  --callout-color: #4F8F8A;
-}
-
-.callout[data-callout="important"],
-.callout[data-callout="question"],
-.callout[data-callout="help"],
-.callout[data-callout="faq"] {
-  --callout-color: #B99A58;
-}
-
-.callout[data-callout="warning"],
-.callout[data-callout="caution"],
-.callout[data-callout="attention"],
-.callout[data-callout="failure"],
-.callout[data-callout="fail"],
-.callout[data-callout="missing"],
-.callout[data-callout="danger"],
-.callout[data-callout="error"],
-.callout[data-callout="bug"] {
-  --callout-color: #C86F61;
-}
-
-.callout[data-callout="success"],
-.callout[data-callout="check"],
-.callout[data-callout="done"],
-.callout[data-callout="quote"],
-.callout[data-callout="cite"] {
-  --callout-color: #4F8F8A;
-}
-
-/* AURENYX Cognitive Cartography callouts.
-   Their labels are explicit; color only reinforces the named role. */
-
+/* Obsidian 1.13+ accepts CSS colors (not RGB channel tuples).
+   Native callout type variables retain built-in aliases and icons. */
 .callout[data-callout="strategy"] {
-  --callout-color: #6689B7;
+  --callout-color: var(--color-blue);
   --callout-icon: lucide-compass;
 }
 
 .callout[data-callout="protection"] {
-  --callout-color: #C86F61;
+  --callout-color: var(--color-red);
   --callout-icon: lucide-shield;
 }
 
 .callout[data-callout="empathy"] {
-  --callout-color: #4F8F8A;
+  --callout-color: var(--color-cyan);
   --callout-icon: lucide-heart-handshake;
 }
 
 .callout[data-callout="shadow"] {
-  --callout-color: #B99A58;
+  --callout-color: var(--color-yellow);
   --callout-icon: lucide-eye;
 }
 
 .callout[data-callout="evidence"] {
-  --callout-color: #4F8F8A;
+  --callout-color: var(--color-cyan);
   --callout-icon: lucide-file-search;
 }
 
 .callout[data-callout="conflict"] {
-  --callout-color: #C86F61;
+  --callout-color: var(--color-red);
   --callout-icon: lucide-git-compare-arrows;
 }
 
 .callout[data-callout="synthesis"] {
-  --callout-color: #6689B7;
+  --callout-color: var(--color-blue);
   --callout-icon: lucide-network;
 }
 
 .callout[data-callout="dissent"] {
-  --callout-color: #C86F61;
+  --callout-color: var(--color-red);
   --callout-icon: lucide-split;
 }
 
+/* A distinct neutral field and stronger edge separate the authored decision
+   from advisory synthesis AND Shadow. No generated approval/status labels. */
 .callout[data-callout="human-decision"],
 .callout[data-callout="decision"] {
-  --callout-color: #B99A58;
+  --callout-color: var(--color-yellow);
   --callout-icon: lucide-circle-check;
 
-  border-width: 1px;
+  background-color: var(--background-primary-alt);
+  border-inline-start-width: 3px;
+  border-inline-start-color: var(--callout-color);
 }
 
-.callout[data-callout="human-decision"] .callout-title,
-.callout[data-callout="decision"] .callout-title {
+/* Direct children keep nested perspectives out of the decision's type style. */
+.callout[data-callout="human-decision"] > .callout-title,
+.callout[data-callout="decision"] > .callout-title {
   font-family: var(--aurenyx-font-display);
 }
 
 /* ==========================================================================
-   15 / CANVAS — COGNITIVE CARTOGRAPHY
+   09 / CANVAS + GRAPH — RELATIONSHIPS OVER SPECTACLE
    ========================================================================== */
 
-.canvas-wrapper {
-  background: var(--canvas-background);
+/* Keep native Canvas color, drag, selection and focus shadows. Theme colors
+   come from the Canvas/Graph variables; user-assigned groups stay intact. */
+.canvas-group-label {
+  /* Canvas chooses light/dark text from the assigned group color. Scope these
+     slots here: other controls need dark text on the theme's brass accent. */
+  --text-on-accent: var(--aurenyx-ivory);
+  --text-on-accent-inverted: var(--aurenyx-obsidian);
 }
 
-.canvas-node-container {
-  border-radius: 5px;
-  box-shadow: none;
-}
-
-.canvas-node.is-selected .canvas-node-container {
-  box-shadow: 0 0 0 2px var(--aurenyx-brass);
-}
-
-.canvas-node-label {
-  font-family: var(--aurenyx-font-ui);
-  color: var(--canvas-card-label-color);
-}
-
-.canvas-control-group {
-  border: 1px solid var(--background-modifier-border);
-  border-radius: 5px;
-  box-shadow: none;
-  background: var(--background-secondary);
-}
-
-.canvas-menu {
-  background: var(--background-secondary);
-  border: 1px solid var(--background-modifier-border);
-  box-shadow: var(--shadow-l);
-}
-
-/* ==========================================================================
-   16 / GRAPH — RELATIONSHIPS OVER SPECTACLE
-   ========================================================================== */
-
+.canvas-control-group,
 .graph-controls {
-  background: var(--background-secondary);
   border: 1px solid var(--background-modifier-border);
-  border-radius: 5px;
-  box-shadow: none;
-}
-
-/* ==========================================================================
-   17 / FORMS + BUTTONS — HUMAN CONTROL REMAINS EXPLICIT
-   ========================================================================== */
-
-button,
-.mod-cta,
-.dropdown,
-input[type="text"],
-input[type="search"],
-input[type="email"],
-input[type="number"],
-input[type="password"],
-textarea {
-  box-shadow: none;
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
 }
 
 .graph-controls input[type="text"] {
-  font-family: var(--aurenyx-font-mono);
-}
-
-
-button.mod-cta {
-  background: var(--aurenyx-brass);
-  color: var(--aurenyx-obsidian);
-  font-weight: 650;
-}
-
-button.mod-cta:hover {
-  background: var(--interactive-accent-hover);
-}
-
-button.mod-warning {
-  background: var(--aurenyx-coral);
-  color: var(--aurenyx-obsidian);
-}
-
-input[type="text"]:focus,
-input[type="search"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus,
-textarea:focus,
-.dropdown:focus {
-  border-color: var(--background-modifier-border-focus);
-  box-shadow: 0 0 0 1px var(--background-modifier-border-focus);
+  font-family: var(--font-monospace);
 }
 
 /* ==========================================================================
-   18 / MODALS + COMMAND PALETTE
+   10 / FORMS, MENUS + DIALOGS — VISIBLE HUMAN CONTROL
    ========================================================================== */
+
+/* A local border token strengthens controls without brightening every panel
+   divider. Native hover/focus rules still select their own state tokens. */
+:is(input, textarea, select, .dropdown, .multi-select-container) {
+  --background-modifier-border: var(--aurenyx-control-border);
+  --background-modifier-border-hover: var(--background-modifier-border-focus);
+}
+
+/* Keep native text slots: direct color overrides break loading spinners. */
+button.mod-cta {
+  font-weight: 600;
+}
+
+button.mod-warning,
+button.mod-destructive.mod-cta {
+  --text-color: var(--aurenyx-obsidian);
+  --background-modifier-error: var(--aurenyx-coral);
+  --background-modifier-error-hover: color-mix(in srgb, var(--aurenyx-coral) 85%, var(--aurenyx-ivory));
+}
 
 .modal,
 .prompt {
@@ -947,37 +706,8 @@ textarea:focus,
   box-shadow: var(--shadow-l);
 }
 
-.modal-title,
-.prompt-instruction-command {
-  font-family: var(--aurenyx-font-ui);
-}
-
-.suggestion-item {
-  border-radius: 3px;
-}
-
-.suggestion-item.is-selected {
-  box-shadow: inset 2px 0 0 var(--aurenyx-brass);
-}
-
-/* ==========================================================================
-   19 / SETTINGS — ENTERPRISE DOCUMENTATION CHARACTER
-   ========================================================================== */
-
 .vertical-tab-header {
   background: var(--background-secondary);
-}
-
-.vertical-tab-nav-item {
-  border-radius: 3px;
-}
-
-.vertical-tab-nav-item.is-active {
-  box-shadow: inset 2px 0 0 var(--aurenyx-brass);
-}
-
-.setting-item {
-  border-top-color: var(--background-modifier-border);
 }
 
 .setting-item-name {
@@ -989,129 +719,104 @@ textarea:focus,
 }
 
 /* ==========================================================================
-   20 / STATUS BAR — SUBORDINATE SYSTEM STATE
+   11 / STATUS + EMBEDS — BOUNDED CONTEXT
    ========================================================================== */
 
 .status-bar {
   border-top: 1px solid var(--status-bar-border-color);
   box-shadow: none;
-  font-family: var(--aurenyx-font-mono);
-  font-size: 0.78em;
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
 }
 
-.status-bar-item {
-  color: var(--status-bar-text-color);
-}
-
-/* ==========================================================================
-   21 / EMBEDS + TRANSCLUSIONS — BOUNDED CONTEXT
-   ========================================================================== */
-
-.markdown-embed,
-.file-embed,
-.internal-embed {
-  border: 1px solid var(--background-modifier-border);
-  border-radius: 5px;
-  background: var(--background-primary-alt);
-  box-shadow: none;
+/* Never style .internal-embed indiscriminately: it also wraps inline images,
+   audio/video and other native/plugin content. */
+.markdown-embed {
+  border-radius: var(--radius-m);
 }
 
 .markdown-embed-title {
-  font-family: var(--aurenyx-font-ui);
+  font-family: var(--font-interface);
   color: var(--text-muted);
 }
 
 /* ==========================================================================
-   22 / SIDEBAR AUXILIARY VIEWS
-   ========================================================================== */
-
-.backlink-pane,
-.outgoing-link-pane,
-.tag-container,
-.search-result-container,
-.outline {
-  font-family: var(--aurenyx-font-ui);
-}
-
-.outline .tree-item-self.is-active {
-  color: var(--text-normal);
-  box-shadow: inset 2px 0 0 var(--aurenyx-brass);
-}
-
-/* ==========================================================================
-   23 / SCROLLBARS
-   ========================================================================== */
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg);
-  border: 3px solid transparent;
-  background-clip: padding-box;
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-active-thumb-bg);
-  border: 3px solid transparent;
-  background-clip: padding-box;
-}
-
-/* ==========================================================================
-   24 / SELECTION + FOCUS
+   12 / SELECTION + KEYBOARD FOCUS
    ========================================================================== */
 
 ::selection {
   background: var(--text-selection);
 }
 
-:focus-visible {
-  outline-color: var(--aurenyx-brass);
+/* Explicit width/style survive native outline:none. Keep the editing canvas
+   itself unframed; actionable controls and metadata editors receive a ring. */
+body :is(button, a[href], input, select, textarea, [tabindex],
+  [contenteditable="true"]):focus-visible:not(.cm-content) {
+  outline: 2px solid var(--background-modifier-border-focus);
   outline-offset: 2px;
 }
 
+@media (forced-colors: active) {
+  body :is(button, a[href], input, select, textarea, [tabindex],
+    [contenteditable="true"]):focus-visible:not(.cm-content) {
+    outline-color: Highlight;
+  }
+}
+
 /* ==========================================================================
-   25 / PRINT — ARCHIVAL LIGHT FIELD
+   13 / PRINT — LIGHT TOKENS EVEN WHEN EXPORTING FROM DARK MODE
    ========================================================================== */
 
 @media print {
-  body {
-    --background-primary: #F2EFE7;
-    --background-primary-alt: #F2EFE7;
-    --text-normal: #11161A;
+  body.theme-dark,
+  body.theme-light {
+    color-scheme: light;
+
+    --aurenyx-blue-ink: #375882;
+    --aurenyx-teal-ink: #2C5C58;
+    --aurenyx-coral-ink: #8B4038;
+    --aurenyx-brass-ink: #695425;
+    --background-primary: var(--aurenyx-ivory);
+    --background-primary-alt: var(--aurenyx-light-1);
+    --background-secondary: var(--aurenyx-light-2);
+    --background-secondary-alt: var(--aurenyx-light-3);
+    --background-modifier-border: var(--aurenyx-light-4);
+    --text-normal: var(--aurenyx-obsidian);
     --text-muted: #4E5558;
-    --text-faint: #74736F;
-    --link-color: #476B9B;
-    --link-external-color: #376E6A;
-    --background-modifier-border: #CFC8BC;
-  }
-
-  .markdown-preview-view {
-    font-family: var(--aurenyx-font-editor);
-    color: var(--text-normal);
-    background: var(--background-primary);
+    --text-faint: #5B5E5E;
+    --table-border-color: var(--aurenyx-light-4);
+    --table-row-alt-background: var(--aurenyx-light-1);
+    --tag-color: var(--text-muted);
+    --tag-background: var(--aurenyx-light-1);
+    --tag-border-color: var(--aurenyx-light-4);
+    --blockquote-border-color: var(--aurenyx-teal-ink);
+    --checklist-done-color: var(--text-faint);
+    --hr-color: var(--aurenyx-light-4);
+    --text-highlight-bg: color-mix(in oklch, var(--aurenyx-brass) 24%, transparent);
   }
 }
 
 /* ==========================================================================
-   26 / REDUCED MOTION + ACCESSIBILITY
+   14 / REDUCED MOTION
    ========================================================================== */
 
+/* Do not globally stop loading/progress animations after one frame. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  body {
+    --anim-duration-superfast: 0ms;
+    --anim-duration-fast: 0ms;
+    --anim-duration-moderate: 0ms;
+    --anim-duration-slow: 0ms;
+  }
+
+  .callout-fold .svg-icon {
+    transition: none;
+  }
+
+  .markdown-preview-view,
+  .markdown-source-view.mod-cm6 .cm-scroller {
     scroll-behavior: auto;
-    transition-duration: 0.01ms;
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
   }
 }
 
-/* ==========================================================================
-   END / AURENYX v1.0.0
-   Structured complexity. Visible tension. Human decision.
-   ========================================================================== */
+/* Structured complexity. Visible tension. Human decision. */
