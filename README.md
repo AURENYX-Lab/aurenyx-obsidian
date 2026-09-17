@@ -25,6 +25,11 @@ Typography follows the AURENYX system:
 - Noto Serif — editorial depth and key statements
 - Noto Mono — technical / evidence contexts
 
+Fonts are not bundled or downloaded. Installed fonts and system fallbacks are
+used; Obsidian's interface, text and monospace font settings remain effective.
+Editorial headings retain the serif role. Text shades adapt to light and dark
+surfaces while the seven brand swatches above remain unchanged.
+
 ## Features
 
 - Dark and light modes
@@ -68,6 +73,13 @@ Typography follows the AURENYX system:
 > Final human decision or authorization.
 ```
 
+`[!decision]` is a supported alias for `[!human-decision]`. Decision callouts use
+a neutral field, serif title and stronger leading edge to distinguish the
+author's decision from advisory synthesis and the Shadow perspective. Use an
+explicit title such as `Human decision / deferred` or `Synthesis / advisory`.
+The theme does not generate a decision, approval, ownership or status label.
+All callouts retain Obsidian's normal folding and nesting syntax.
+
 ## Installation
 
 Once accepted into the Obsidian Community Theme directory:
@@ -79,6 +91,27 @@ For manual installation, place `manifest.json` and `theme.css` in:
 ```text
 <Vault>/.obsidian/themes/AURENYX/
 ```
+
+Requires Obsidian **1.13.0 or newer**. Callout and Canvas colors use the CSS color
+format introduced in 1.13; older RGB-tuple snippets may need updating.
+
+## Development and verification
+
+```sh
+npm ci
+npm run check
+```
+
+The check runs strict Stylelint and dependency-free identity, version, callout
+and contrast checks. It does not certify full accessibility or replace native
+Obsidian testing. Follow the [native acceptance checklist](docs/QA.md) using the
+[fixture note](tests/fixture.md) before release. The current
+[hardening review](docs/HARDENING_REVIEW.md) records findings, limitations and
+draft release notes.
+
+Package, lockfile and manifest versions must agree. This hardening patch keeps
+the current release version until the owner prepares the next release; do not
+run `npm version` during review, because its default behavior creates a tag.
 
 ## Philosophy
 
