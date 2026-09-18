@@ -4,6 +4,8 @@
 
 AURENYX is a restrained dark/light Obsidian theme built around structured complexity, visible tension, bounded technology, and explicit human agency.
 
+![AURENYX Showcase](screenshots/screenshot.png)
+
 ## Preview
 
 | Dark | Light |
