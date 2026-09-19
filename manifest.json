@@ -1,6 +1,8 @@
 {
 	"name": "AURENYX",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"minAppVersion": "1.13.0",
-	"author": "Daniel L. Koslowski"
+	"author": "Daniel L. Koslowski",
+	"authorUrl": "https://github.com/AURENYX-Lab",
+	"fundingUrl": "https://www.buymeacoffee.com/aurenyx"
 }
