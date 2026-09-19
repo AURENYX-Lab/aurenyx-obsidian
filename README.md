@@ -157,6 +157,6 @@ The AURENYX name, logo, brand identity, and associated marks are not licensed fo
 If AURENYX improves your Obsidian workspace and you would like to support its
 continued development, you can help fund the project:
 
-[![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-Support_AURENYX-B99A58?style=for-the-badge&logo=buymeacoffee&logoColor=11161A&labelColor=1B2227)](https://www.buymeacoffee.com/YOURNAME)
+[![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-Support_AURENYX-B99A58?style=for-the-badge&logo=buymeacoffee&logoColor=11161A&labelColor=1B2227)](https://www.buymeacoffee.com/aurenyx)
 
 Support is entirely optional. AURENYX remains freely available under the MIT License.
