@@ -60,9 +60,13 @@ surfaces while the seven brand swatches above remain unchanged.
 - Workspace, tabs, sidebars and navigation
 - Properties / metadata
 - Tables, code, tags and tasks
-- Bases: table, cards and list views
+- Native Obsidian Bases integration
+  - Table, cards and list views
+  - Native grouping, filtering, sorting and editing behavior preserved
+  - AURENYX-consistent focus treatment in dark and light modes
 - Canvas and Graph
 - Modals, settings and command palette
+- Responsive and mobile-aware hardening for narrow layouts
 - Print styling and reduced-motion support
 - AURENYX semantic callouts
 
@@ -104,11 +108,11 @@ explicit title such as `Human decision / deferred` or `Synthesis / advisory`.
 The theme does not generate a decision, approval, ownership or status label.
 All callouts retain Obsidian's normal folding and nesting syntax.
 
-## Installation
+### Installation
 
-Once accepted into the Obsidian Community Theme directory:
+Install AURENYX directly from the Obsidian Community Themes directory:
 
-**Settings → Appearance → Themes → Manage → AURENYX**
+**Settings → Appearance → Themes → Manage → search for “AURENYX”**
 
 For manual installation, place `manifest.json` and `theme.css` in:
 
@@ -130,12 +134,12 @@ The check runs strict Stylelint and dependency-free identity, version, callout
 and contrast checks. It does not certify full accessibility or replace native
 Obsidian testing. Follow the [native acceptance checklist](docs/QA.md) using the
 [fixture note](tests/fixture.md) and the [Base fixture](tests/fixture.base) before
-release. The current [hardening review](docs/HARDENING_REVIEW.md) records findings,
-limitations and draft release notes.
+release. The [hardening review](docs/HARDENING_REVIEW.md) records validated findings, engineering constraints and known limitations.
 
-Package, lockfile and manifest versions must agree. This hardening patch keeps
-the current release version until the owner prepares the next release; do not
-run `npm version` during review, because its default behavior creates a tag.
+Package, lockfile, manifest and `versions.json` versions must agree. Release
+candidates must pass the complete validation suite before tagging. Tagged
+releases are validated again by GitHub Actions and created as drafts for manual
+publication.
 
 ## Philosophy
 
