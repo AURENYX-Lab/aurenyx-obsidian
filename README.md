@@ -2,7 +2,8 @@
 
 **Cognitive Cartography for Obsidian.**
 
-AURENYX is a restrained dark/light Obsidian theme built around structured complexity, visible tension, bounded technology, and explicit human agency.
+
+![AURENYX Banner](screenshots/AURENYX_banner.png)
 
 <p align="center">
   <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/releases/latest">
@@ -24,6 +25,8 @@ AURENYX is a restrained dark/light Obsidian theme built around structured comple
     <img src="https://img.shields.io/badge/Support_AURENYX-Buy_me_a_coffee-B99A58?style=for-the-badge&logo=buymeacoffee&logoColor=11161A&labelColor=1B2227" alt="Buy me a coffee">
   </a>
 </p>
+
+AURENYX is a restrained dark/light Obsidian theme built around structured complexity, visible tension, bounded technology, and explicit human agency.
 
 ![AURENYX Showcase](screenshots/screenshot.png)
 
