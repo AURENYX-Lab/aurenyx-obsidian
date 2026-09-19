@@ -5,24 +5,110 @@ on:
     tags:
       - "*"
 
-permissions:
-  contents: write
-
 jobs:
-  build:
+  validate:
+    name: Validate release candidate
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout tagged commit
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: npm
+
+      - name: Verify release tag
+        shell: bash
         run: |
-          tag="${GITHUB_REF#refs/tags/}"
+          set -euo pipefail
 
-          gh release create "$tag" \
-            --title="$tag" \
+          TAG="${GITHUB_REF_NAME}"
+          MANIFEST_VERSION="$(node -p "require('./manifest.json').version")"
+
+          echo "Git tag:          ${TAG}"
+          echo "Manifest version: ${MANIFEST_VERSION}"
+
+          if [[ ! "${TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid release tag '${TAG}'. Expected semantic version such as 1.0.6."
+            exit 1
+          fi
+
+          if [[ "${TAG}" != "${MANIFEST_VERSION}" ]]; then
+            echo "::error::Release blocked: tag '${TAG}' does not match manifest version '${MANIFEST_VERSION}'."
+            exit 1
+          fi
+
+      - name: Verify tagged commit is on main
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch origin main
+
+          RELEASE_COMMIT="$(git rev-list -n 1 "${GITHUB_REF_NAME}")"
+
+          if ! git merge-base --is-ancestor "${RELEASE_COMMIT}" origin/main; then
+            echo "::error::Release blocked: tagged commit is not contained in origin/main."
+            exit 1
+          fi
+
+          echo "Tagged commit is contained in main."
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate theme
+        run: npm run check
+
+      - name: Verify release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -s manifest.json || {
+            echo "::error::manifest.json is missing or empty."
+            exit 1
+          }
+
+          test -s theme.css || {
+            echo "::error::theme.css is missing or empty."
+            exit 1
+          }
+
+  release:
+    name: Create draft release
+    needs: validate
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout tagged commit
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          gh release create "${GITHUB_REF_NAME}" \
+            --verify-tag \
+            --title="AURENYX ${GITHUB_REF_NAME} — Cognitive Cartography" \
             --generate-notes \
             --draft \
-            manifest.json theme.css
+            manifest.json \
+            theme.css
