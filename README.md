@@ -3,7 +3,7 @@
 **Cognitive Cartography for Obsidian.**
 
 
-![AURENYX Banner](screenshots/AURENYX_banner.png)
+![AURENYX Banner](screenshots/AURENYX_Banner.png)
 
 <p align="center">
   <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/releases/latest">
