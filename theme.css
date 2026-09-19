@@ -265,7 +265,6 @@ body {
   --checkbox-border-color-hover: var(--aurenyx-brass);
   --checkbox-marker-color: var(--aurenyx-obsidian);
   --checklist-done-color: var(--text-faint);
-  --nav-item-color: var(--text-muted);
   --nav-item-color-hover: var(--text-normal);
   --nav-item-color-active: var(--text-normal);
   --nav-item-background-hover: var(--aurenyx-dark-3);
@@ -414,7 +413,6 @@ body {
   --checkbox-border-color-hover: #866C32;
   --checkbox-marker-color: var(--aurenyx-obsidian);
   --checklist-done-color: var(--text-faint);
-  --nav-item-color: var(--text-muted);
   --nav-item-color-hover: var(--text-normal);
   --nav-item-color-active: var(--text-normal);
   --nav-item-background-hover: var(--aurenyx-light-2);
@@ -717,9 +715,10 @@ button.mod-destructive.mod-cta {
   --background-modifier-error-hover: color-mix(in srgb, var(--aurenyx-coral) 85%, var(--aurenyx-ivory));
 }
 
-.modal,
-.prompt {
-  border: 1px solid var(--modal-border-color);
+/* Obsidian draws both edges from its own width tokens, which phones set to 0
+   for edge-to-edge sheets and mobile thins to a hairline, and it already gives
+   the prompt this shadow. Only the modal's shadow is missing. */
+.modal {
   box-shadow: var(--shadow-l);
 }
 
@@ -781,7 +780,41 @@ body :is(button, a[href], input, select, textarea, [tabindex],
 }
 
 /* ==========================================================================
-   14 / PRINT — LIGHT TOKENS EVEN WHEN EXPORTING FROM DARK MODE
+   14 / MOBILE — SAME SYSTEM ON A SMALLER SURFACE
+   ========================================================================== */
+
+/* Obsidian's own mobile rules carry layout, touch geometry, safe areas and
+   keyboard handling, and this theme adds none of that. What follows repairs
+   only the places where a native mobile value and an AURENYX value combine
+   into a result neither intends. Removing it restores that combination. */
+
+/* Mobile replaces the destructive button's error fill with a neutral one and
+   recolors the label. Against this palette that label lands at about 4.1:1 in
+   dark mode, under the boundary this theme holds text to, and the neutral fill
+   sits about 1.4:1 from the sheet behind it. The theme's own destructive pair
+   is carried above, is legible on both mobile fills, and keeps one destructive
+   control across desktop and mobile rather than three. */
+.is-mobile button.mod-warning {
+  background-color: var(--background-modifier-error);
+
+  /* Feed the native slot rather than setting color here: a direct override
+     would also outrank the loading state that blanks the label. */
+  --text-error: var(--text-color);
+}
+
+/* Mobile dark remaps two tokens past this theme. The form field becomes the
+   border shade, which leaves faint placeholder ink at about 3.5:1; the muted
+   shade restores the boundary this theme holds elsewhere. Tags are tinted
+   with the accent, and Brass marks human action and the Shadow perspective
+   here, so a tag is the one place it must not appear: the Corporate Design
+   reserves color for meaning and rules out decorative gold. */
+.is-mobile.theme-dark {
+  --input-placeholder-color: var(--text-muted);
+  --tag-background: var(--aurenyx-carbon);
+}
+
+/* ==========================================================================
+   15 / PRINT — LIGHT TOKENS EVEN WHEN EXPORTING FROM DARK MODE
    ========================================================================== */
 
 @media print {
@@ -811,10 +844,16 @@ body :is(button, a[href], input, select, textarea, [tabindex],
     --hr-color: var(--aurenyx-light-4);
     --text-highlight-bg: color-mix(in oklch, var(--aurenyx-brass) 24%, transparent);
   }
+
+  /* Same specificity as the mobile dark rule in section 14, and later, so a
+     phone export resolves the same tag field a desktop export does. */
+  .is-mobile.theme-dark {
+    --tag-background: var(--aurenyx-light-1);
+  }
 }
 
 /* ==========================================================================
-   15 / REDUCED MOTION
+   16 / REDUCED MOTION
    ========================================================================== */
 
 /* Do not globally stop loading/progress animations after one frame. */
