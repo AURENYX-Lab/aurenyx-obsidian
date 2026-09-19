@@ -11,10 +11,12 @@ AURENYX is a restrained dark/light Obsidian theme built around structured comple
   <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/releases">
     <img src="https://img.shields.io/github/downloads/AURENYX-Lab/aurenyx-obsidian/total?style=for-the-badge&label=Downloads&color=4F8F8A&labelColor=1B2227" alt="Downloads">
   </a>
+  <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/stargazers">
+    <img src="https://img.shields.io/github/stars/AURENYX-Lab/aurenyx-obsidian?style=for-the-badge&label=Stars&color=B99A58&labelColor=1B2227" alt="GitHub stars">
+  </a>
   <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/AURENYX-Lab/aurenyx-obsidian?style=for-the-badge&label=License&color=6689B7&labelColor=1B2227" alt="License">
   </a>
-  <img src="https://img.shields.io/badge/Obsidian-1.13%2B-F2EFE7?style=for-the-badge&labelColor=1B2227" alt="Obsidian 1.13+">
 </p>
 
 <p align="center">
@@ -149,3 +151,12 @@ AURENYX is intended to behave like a cognitive instrument, not a decorative AI s
 Theme source code is released under the MIT License.
 
 The AURENYX name, logo, brand identity, and associated marks are not licensed for use as trademarks by this software license.
+
+## Support AURENYX
+
+If AURENYX improves your Obsidian workspace and you would like to support its
+continued development, you can help fund the project:
+
+[![Buy me a coffee](https://img.shields.io/badge/Buy_me_a_coffee-Support_AURENYX-B99A58?style=for-the-badge&logo=buymeacoffee&logoColor=11161A&labelColor=1B2227)](https://www.buymeacoffee.com/YOURNAME)
+
+Support is entirely optional. AURENYX remains freely available under the MIT License.
