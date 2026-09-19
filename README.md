@@ -4,6 +4,25 @@
 
 AURENYX is a restrained dark/light Obsidian theme built around structured complexity, visible tension, bounded technology, and explicit human agency.
 
+<p align="center">
+  <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/releases/latest">
+    <img src="https://img.shields.io/github/v/release/AURENYX-Lab/aurenyx-obsidian?style=for-the-badge&label=Release&color=B99A58&labelColor=1B2227" alt="Latest release">
+  </a>
+  <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/releases">
+    <img src="https://img.shields.io/github/downloads/AURENYX-Lab/aurenyx-obsidian/total?style=for-the-badge&label=Downloads&color=4F8F8A&labelColor=1B2227" alt="Downloads">
+  </a>
+  <a href="https://github.com/AURENYX-Lab/aurenyx-obsidian/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/AURENYX-Lab/aurenyx-obsidian?style=for-the-badge&label=License&color=6689B7&labelColor=1B2227" alt="License">
+  </a>
+  <img src="https://img.shields.io/badge/Obsidian-1.13%2B-F2EFE7?style=for-the-badge&labelColor=1B2227" alt="Obsidian 1.13+">
+</p>
+
+<p align="center">
+  <a href="https://www.buymeacoffee.com/aurenyx">
+    <img src="https://img.shields.io/badge/Support_AURENYX-Buy_me_a_coffee-B99A58?style=for-the-badge&logo=buymeacoffee&logoColor=11161A&labelColor=1B2227" alt="Buy me a coffee">
+  </a>
+</p>
+
 ![AURENYX Showcase](screenshots/screenshot.png)
 
 ## Preview
