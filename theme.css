@@ -582,7 +582,24 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
 }
 
 /* ==========================================================================
-   08 / CALLOUTS — EXPLICIT SEMANTICS
+   08 / BASES — STRUCTURED RECORDS
+   ========================================================================== */
+
+/* Bases resolves its own variables from the surface, table, property, link and
+   tag tokens above, so table, card and list views, group headings, toolbars,
+   menus, hover, selection, embeds and print already read as AURENYX and are
+   deliberately left native, as is the grid's own active-cell mark. */
+.bases-table-container {
+  /* Native rings the cell being edited, and the selection anchor, with the raw
+     accent: Brass on Ivory is about 2.3:1. The focus token carries the
+     contrast this theme holds every other focus mark to. Opening a Base
+     focuses the grid before any cell is active, and an empty result never has
+     one, so the shared outline in section 13 deliberately still applies. */
+  --bases-table-cell-shadow-focus: 0 0 0 2px var(--background-modifier-border-focus);
+}
+
+/* ==========================================================================
+   09 / CALLOUTS — EXPLICIT SEMANTICS
    ========================================================================== */
 
 .callout-title {
@@ -654,7 +671,7 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
 }
 
 /* ==========================================================================
-   09 / CANVAS + GRAPH — RELATIONSHIPS OVER SPECTACLE
+   10 / CANVAS + GRAPH — RELATIONSHIPS OVER SPECTACLE
    ========================================================================== */
 
 /* Keep native Canvas color, drag, selection and focus shadows. Theme colors
@@ -678,7 +695,7 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
 }
 
 /* ==========================================================================
-   10 / FORMS, MENUS + DIALOGS — VISIBLE HUMAN CONTROL
+   11 / FORMS, MENUS + DIALOGS — VISIBLE HUMAN CONTROL
    ========================================================================== */
 
 /* A local border token strengthens controls without brightening every panel
@@ -719,7 +736,7 @@ button.mod-destructive.mod-cta {
 }
 
 /* ==========================================================================
-   11 / STATUS + EMBEDS — BOUNDED CONTEXT
+   12 / STATUS + EMBEDS — BOUNDED CONTEXT
    ========================================================================== */
 
 .status-bar {
@@ -741,7 +758,7 @@ button.mod-destructive.mod-cta {
 }
 
 /* ==========================================================================
-   12 / SELECTION + KEYBOARD FOCUS
+   13 / SELECTION + KEYBOARD FOCUS
    ========================================================================== */
 
 ::selection {
@@ -764,7 +781,7 @@ body :is(button, a[href], input, select, textarea, [tabindex],
 }
 
 /* ==========================================================================
-   13 / PRINT — LIGHT TOKENS EVEN WHEN EXPORTING FROM DARK MODE
+   14 / PRINT — LIGHT TOKENS EVEN WHEN EXPORTING FROM DARK MODE
    ========================================================================== */
 
 @media print {
@@ -797,7 +814,7 @@ body :is(button, a[href], input, select, textarea, [tabindex],
 }
 
 /* ==========================================================================
-   14 / REDUCED MOTION
+   15 / REDUCED MOTION
    ========================================================================== */
 
 /* Do not globally stop loading/progress animations after one frame. */

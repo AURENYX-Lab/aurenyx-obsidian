@@ -83,6 +83,13 @@ for (const role of roles) {
 }
 assert.deepEqual(publicCallouts.get("decision"), publicCallouts.get("human-decision"));
 
+// Bases rings the cell being edited, and the selection anchor, from this token.
+// Require a non-zero outer ring, then hold its color to the same non-text
+// threshold as every other focus color this theme resolves.
+const basesRing = block(".bases-table-container")["--bases-table-cell-shadow-focus"];
+const basesRingSource = basesRing?.match(/^0 0 0 [1-9]\d*px (var\((--[\w-]+)\)|#[\da-f]{6})$/i);
+assert(basesRingSource, `Unsupported Bases focus ring: ${basesRing}`);
+
 for (const mode of ["dark", "light"]) {
   const tokens = { ...common, ...block(`.theme-${mode}`) };
   const rgb = (name) => color(tokens, `--${name}`);
@@ -98,6 +105,8 @@ for (const mode of ["dark", "light"]) {
   }
   for (const bg of surfaces) {
     check(`${mode}/focus/${bg}`, rgb("background-modifier-border-focus"), rgb(bg), 3);
+    check(`${mode}/bases-cell-focus/${bg}`, basesRingSource[2]
+      ? color(tokens, basesRingSource[2]) : color({ ring: basesRingSource[1] }, "ring"), rgb(bg), 3);
     check(`${mode}/unresolved/${bg}`, composite(rgb("link-unresolved-color"), rgb(bg),
       Number(value(tokens, "--link-unresolved-opacity"))), rgb(bg), 4.5);
   }

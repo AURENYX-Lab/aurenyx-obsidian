@@ -1,0 +1,45 @@
+filters:
+  and:
+    - 'file.hasTag("aurenyx/acceptance")'
+formulas:
+  condition: 'if(status, status + " / review " + review)'
+properties:
+  status:
+    displayName: Status
+  owner:
+    displayName: Owner
+  review:
+    displayName: Review
+  formula.condition:
+    displayName: Condition
+views:
+  - type: table
+    name: Register
+    order:
+      - file.name
+      - status
+      - owner
+      - review
+      - formula.condition
+      - capacity_evidence
+      - file.tags
+  - type: table
+    name: By status
+    groupBy:
+      property: status
+      direction: ASC
+    order:
+      - file.name
+      - owner
+      - review
+  - type: cards
+    name: Cards
+    order:
+      - file.name
+      - status
+      - owner
+  - type: list
+    name: List
+    order:
+      - file.name
+      - status

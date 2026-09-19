@@ -60,6 +60,7 @@ surfaces while the seven brand swatches above remain unchanged.
 - Workspace, tabs, sidebars and navigation
 - Properties / metadata
 - Tables, code, tags and tasks
+- Bases: table, cards and list views
 - Canvas and Graph
 - Modals, settings and command palette
 - Print styling and reduced-motion support
@@ -128,9 +129,9 @@ npm run check
 The check runs strict Stylelint and dependency-free identity, version, callout
 and contrast checks. It does not certify full accessibility or replace native
 Obsidian testing. Follow the [native acceptance checklist](docs/QA.md) using the
-[fixture note](tests/fixture.md) before release. The current
-[hardening review](docs/HARDENING_REVIEW.md) records findings, limitations and
-draft release notes.
+[fixture note](tests/fixture.md) and the [Base fixture](tests/fixture.base) before
+release. The current [hardening review](docs/HARDENING_REVIEW.md) records findings,
+limitations and draft release notes.
 
 Package, lockfile and manifest versions must agree. This hardening patch keeps
 the current release version until the owner prepares the next release; do not
