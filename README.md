@@ -35,6 +35,7 @@ AURENYX is a restrained dark/light Obsidian theme built around structured comple
 | Dark | Light |
 | --- | --- |
 | ![AURENYX Dark](screenshots/dark.png) | ![AURENYX Light](screenshots/light.png) |
+| ![AURENYX Dark](screenshots/bases_dark.png) | ![AURENYX Light](screenshots/bases_light.png) |
 
 ## Design system
 
