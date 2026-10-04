@@ -8,7 +8,9 @@ into the vault, and duplicate the fixture note twice so grouping, sorting and
 column resizing have several rows. No private data is needed.
 
 Run `npm ci` and `npm run check` first. These checks measure default token
-contrast, single callout tints and print token parity, not actual rendering.
+contrast, the callout field tint, the on-screen decision field (including one
+nested callout and its drift from the opposite mode's tokens) and print token
+parity, not actual rendering.
 
 Record OS, Obsidian version, installer/Electron version, mode, viewport, display
 scale and enabled plugins for each run. Cover the minimum supported version
@@ -19,8 +21,8 @@ Do not mark a row passed solely because the stylesheet parses.
 | --- | --- | --- |
 | 1 | Reading, Live Preview and Source; switch dark/light | Headings, prose, lists, quote borders, inline/fenced code and tags agree in role; syntax remains legible. Adjacent hashtag segments form one pill. No caret jumps or clipped content. |
 | 2 | Appearance font overrides; text sizes 14, 18, 24 px | UI/body/code respect their respective user fonts; serif headings remain intentional. No bundled font or network dependency. |
-| 3 | Fixture callouts, including folded and nested blocks | All ten public names resolve; icons and labels distinguish roles. `decision` and `human-decision` agree. Nested advisory titles do not inherit decision serif styling. Folding works in both modes. |
-| 4 | Properties: add, edit, delete, reorder; text, date, list, checkbox, long value | Comfortable inset; focus, selection and error states visible. Sidebar properties retain native compact spacing. |
+| 3 | Fixture callouts, including folded and nested blocks | All ten public names resolve; icons and labels distinguish roles. `decision` and `human-decision` agree and take the opposite-mode field on screen with a bevel at the reading-end top corner (top left in RTL). Nested advisory callouts inside a decision keep legible role colors and do not inherit decision serif styling. Selection, links, tags and code inside a decision stay legible. Folding works in both modes. |
+| 4 | Properties: add, edit, delete, reorder; text, date, list, checkbox, long value | Register layout: no frame, one hairline under each row; on phones rows never overhang a border. Focus, hover, selection and error states visible. Sidebar properties retain native compact spacing. |
 | 5 | Multiple tabs, split panes, stacked tabs, sidebars and RTL | Tab curves are intact; active accent is inside the tab. Native close/drag/reorder/resize controls work. Start-edge navigation markers follow RTL. |
 | 6 | Search, quick switcher, command palette, menus and dialogs | Only matched text is highlighted at rest. Hover, keyboard selection, disabled and empty results remain distinguishable. No full-row permanent search highlight. |
 | 7 | Tab/Shift+Tab through inputs, buttons, toggles, links, dates, sliders and metadata | Focus ring is visible and not clipped or hidden behind a dialog. Enter/Space/Escape retain native behavior. Disabled controls remain disabled. Loading buttons hide their text correctly. |

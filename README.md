@@ -62,7 +62,7 @@ surfaces while the seven brand swatches above remain unchanged.
 - Dark and light modes
 - Editor and reading view
 - Workspace, tabs, sidebars and navigation
-- Properties / metadata
+- Properties / metadata, set as a hairline register
 - Tables, code, tags and tasks
 - Native Obsidian Bases integration
   - Table, cards and list views
@@ -105,9 +105,17 @@ surfaces while the seven brand swatches above remain unchanged.
 > Final human decision or authorization.
 ```
 
-`[!decision]` is a supported alias for `[!human-decision]`. Decision callouts use
-a neutral field, serif title and stronger leading edge to distinguish the
-author's decision from advisory synthesis and the Shadow perspective. Use an
+Perspectives render as entries of one register: the same neutral field for
+every role, a leading rule in the role color and the role named in the title.
+Color marks the role, never the surface.
+
+`[!decision]` is a supported alias for `[!human-decision]`. On screen, decision
+callouts take the opposite field of the current mode (Ivory in dark mode,
+Obsidian in light mode), with a serif title, a stronger leading edge and one
+bevelled corner, so the author's decision closes the register rather than
+blending into advisory synthesis or the Shadow perspective. Callouts nested
+inside a decision keep their roles on that field. Print uses a neutral light
+field for decisions. Use an
 explicit title such as `Human decision / deferred` or `Synthesis / advisory`.
 The theme does not generate a decision, approval, ownership or status label.
 All callouts retain Obsidian's normal folding and nesting syntax.

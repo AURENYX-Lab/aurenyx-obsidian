@@ -1,6 +1,7 @@
 /** Static release-contract and WCAG contrast checks; no browser/app claim.
  * Color checks resolve the theme's flat root token blocks and use sRGB alpha
- * compositing for Obsidian 1.13's color + transparent callout backgrounds.
+ * compositing for any callout field tint. The on-screen decision field is
+ * resolved from its opposite-mode token block, including one nested entry.
  * They do not simulate the CSS cascade, arbitrary nesting or user snippets.
  */
 import assert from "node:assert/strict";
@@ -83,6 +84,30 @@ for (const role of roles) {
 }
 assert.deepEqual(publicCallouts.get("decision"), publicCallouts.get("human-decision"));
 
+// Every callout is drawn on the mode's --aurenyx-callout-field, either plain
+// or mixed with a share of its role color in sRGB.
+const calloutRule = [...css.matchAll(/(?:^|})\s*\.callout\s*\{([^{}]*)}/g)].map((m) => m[1])
+  .find((body) => /background-color:/.test(body));
+const fieldMatch = calloutRule?.match(/background-color:\s*(?:var\(--aurenyx-callout-field\)|color-mix\(in srgb, var\(--callout-color\) (\d+)%, var\(--aurenyx-callout-field\)\));/);
+assert(fieldMatch, "Callouts must be drawn on the --aurenyx-callout-field token");
+const calloutTint = Number(fieldMatch[1] ?? 0) / 100;
+
+// The on-screen decision takes the opposite mode's field. Its block must
+// restate that mode's resolved values, so a token edit in section 02 or 03
+// cannot leave the decision behind.
+const decisionBlocks = new Map();
+for (const mode of ["dark", "light"]) {
+  const head = [`.theme-${mode} .callout[data-callout="human-decision"]`,
+    `.theme-${mode} .callout[data-callout="decision"]`];
+  const rule = [...css.matchAll(/([^{}]+)\{([^{}]*)}/g)]
+    .find((m) => m[1].split(",").map((s) => s.trim()).join("|") === head.join("|"));
+  assert(rule, `Missing ${mode} decision field`);
+  assert(css.startsWith("@media screen", css.lastIndexOf("@media", rule.index)),
+    `${mode} decision field must stay screen-only`);
+  decisionBlocks.set(mode, Object.fromEntries([...rule[2].matchAll(/(--[\w-]+):\s*([^;]+);/g)]
+    .map((m) => [m[1], m[2].trim()])));
+}
+
 // Bases rings the cell being edited, and the selection anchor, from this token.
 // Require a non-zero outer ring, then hold its color to the same non-text
 // threshold as every other focus color this theme resolves.
@@ -125,15 +150,36 @@ for (const mode of ["dark", "light"]) {
   const group = { ...tokens, ...block(".canvas-group-label") };
   check(`${mode}/canvas-light-foreground`, color(group, "--text-on-accent"), rgb("aurenyx-obsidian"), 4.5);
   check(`${mode}/canvas-dark-foreground`, color(group, "--text-on-accent-inverted"), rgb("aurenyx-ivory"), 4.5);
-  for (const [role, callout] of publicCallouts) {
-    const foreground = color({ ...tokens, ...callout }, "--callout-color");
-    for (const bg of surfaces.slice(0, 3)) {
-      const background = ["decision", "human-decision"].includes(role)
-        ? rgb("background-primary-alt") : composite(foreground, rgb(bg), 0.1);
-      check(`${mode}/callout-${role}/${bg}`, foreground, background, 4.5);
-      check(`${mode}/callout-body-${role}/${bg}`, rgb("text-normal"), background, 4.5);
-    }
+  const opposite = mode === "dark" ? "light" : "dark";
+  const decision = { ...tokens, ...decisionBlocks.get(mode) };
+  const oppositeTokens = { ...common, ...block(`.theme-${opposite}`) };
+  for (const name of Object.keys(decisionBlocks.get(mode))) {
+    if (!(name in block(`.theme-${opposite}`))) continue;
+    assert.equal(value(decision, name).toUpperCase(), value(oppositeTokens, name).toUpperCase(),
+      `${mode} decision field drifted from .theme-${opposite}: ${name}`);
   }
+  const field = (context) => color(context, "--background-primary");
+  for (const [role, callout] of publicCallouts) {
+    const isDecision = ["decision", "human-decision"].includes(role);
+    const context = isDecision ? { ...decision, ...callout } : { ...tokens, ...callout };
+    const foreground = color(context, "--callout-color");
+    const background = isDecision ? field(decision)
+      : composite(foreground, color(tokens, "--aurenyx-callout-field"), calloutTint);
+    check(`${mode}/callout-${role}`, foreground, background, 4.5);
+    check(`${mode}/callout-body-${role}`, color(context, "--text-normal"), background, 4.5);
+    // A perspective nested inside the decision resolves the decision's tokens.
+    const nestedForeground = color({ ...decision, ...callout }, "--callout-color");
+    const nested = composite(nestedForeground, color(decision, "--aurenyx-callout-field"), calloutTint);
+    check(`${mode}/decision-nested-${role}`, nestedForeground, nested, 4.5);
+    check(`${mode}/decision-nested-body-${role}`, color(decision, "--text-normal"), nested, 4.5);
+  }
+  for (const name of ["text-normal", "text-muted", "text-faint", "text-accent", "link-color",
+    "link-external-color", "link-unresolved-color", "tag-color", "code-comment", "code-keyword",
+    "code-string", "code-function", "code-important"]) {
+    check(`${mode}/decision-field/${name}`, color(decision, `--${name}`), field(decision), 4.5);
+  }
+  check(`${mode}/decision-field/focus`, color(decision, "--background-modifier-border-focus"),
+    field(decision), 3);
 }
 // Print from either source mode must resolve to the same light content colors.
 const printBlock = css.match(/@media print\s*\{\s*body\.theme-dark,\s*body\.theme-light\s*\{([^{}]*)}/);
@@ -142,6 +188,8 @@ const printTokens = Object.fromEntries([...printBlock[1].matchAll(/(--[\w-]+):\s
   .map((m) => [m[1], m[2].trim()]));
 const printDark = { ...common, ...block(".theme-dark"), ...printTokens };
 const printLight = { ...common, ...block(".theme-light"), ...printTokens };
+assert.equal(value(printDark, "--aurenyx-callout-field"), value(printLight, "--aurenyx-callout-field"),
+  "Print callout field must not depend on the source mode");
 for (const name of ["text-normal", "text-muted", "text-faint", "link-color", "link-external-color",
   "code-normal", "code-comment", "code-keyword", "code-string", "code-function",
   "color-blue", "color-red", "color-yellow", "color-cyan"]) {
@@ -152,4 +200,4 @@ for (const name of ["text-normal", "text-muted", "text-faint", "link-color", "li
 for (const [group, { ratio, label }] of minima) console.log(`${group}: minimum ${ratio.toFixed(2)}:1 (${label})`);
 assert.equal(failures.length, 0, failures.join("\n"));
 console.log(`PASS: identity/version/assets, ${roles.length} public callouts, ${count} contrast pairs.`);
-console.log("Scope: default tokens and single callout tint; no native UI, nesting, plugin or WCAG certification claim.");
+console.log("Scope: default tokens, callout field tint, decision field and one nested level; no native UI, plugin or WCAG certification claim.");

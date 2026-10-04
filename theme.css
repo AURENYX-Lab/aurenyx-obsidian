@@ -79,24 +79,44 @@ body {
   --accent-s: 40.5858%;
   --accent-l: 53.5294%;
   --line-height-normal: 1.62;
+
+  /* Editorial scale. The Corporate Design sets its statements in Noto Serif
+     at a regular weight; authority comes from size and spacing, not bold.
+     Serif stops at H3; H4-H6 are operational labels in the UI face. */
   --inline-title-font: var(--aurenyx-font-display);
-  --inline-title-weight: 600;
-  --inline-title-line-height: 1.16;
+  --inline-title-size: 2.05em;
+  --inline-title-weight: 500;
+  --inline-title-line-height: 1.14;
+  --inline-title-margin-bottom: 0.6em;
   --h1-font: var(--aurenyx-font-display);
   --h2-font: var(--aurenyx-font-display);
   --h3-font: var(--aurenyx-font-display);
   --h4-font: var(--font-interface);
   --h5-font: var(--font-interface);
   --h6-font: var(--font-interface);
-  --h1-weight: 600;
-  --h2-weight: 600;
+  --h1-size: 1.74em;
+  --h2-size: 1.42em;
+  --h3-size: 1.2em;
+  --h4-size: 1.04em;
+  --h5-size: 0.96em;
+  --h6-size: 0.9em;
+  --h1-weight: 500;
+  --h2-weight: 500;
   --h3-weight: 600;
   --h4-weight: 600;
   --h5-weight: 600;
   --h6-weight: 600;
   --h1-line-height: 1.18;
   --h2-line-height: 1.22;
-  --h3-line-height: 1.28;
+  --h3-line-height: 1.3;
+  --h1-letter-spacing: -0.016em;
+  --h2-letter-spacing: -0.011em;
+  --h3-letter-spacing: -0.004em;
+  --h4-letter-spacing: 0.006em;
+  --h5-letter-spacing: 0.01em;
+  --h6-letter-spacing: 0.012em;
+  --h5-color: var(--text-muted);
+  --h6-color: var(--text-muted);
   --italic-color: var(--text-muted);
   --radius-s: 3px;
   --radius-m: 5px;
@@ -119,11 +139,17 @@ body {
   --titlebar-text-color-focused: var(--text-normal);
   --ribbon-background: var(--background-secondary);
   --ribbon-background-collapsed: var(--background-secondary);
-  --metadata-background: var(--background-primary-alt);
+
+  /* Properties read as a register, not a card: a quiet label, then one
+     hairline under each entry. No frame, so phone layouts that run rows
+     edge to edge never overhang a border. */
+  --metadata-background: transparent;
   --metadata-border-color: var(--background-modifier-border);
-  --metadata-border-width: 1px;
-  --metadata-border-radius: var(--radius-m);
-  --metadata-padding: var(--size-4-3);
+  --metadata-border-width: 0;
+  --metadata-border-radius: 0;
+  --metadata-padding: 0;
+  --metadata-divider-width: 1px;
+  --metadata-divider-color: var(--background-modifier-border);
   --metadata-label-text-color: var(--text-muted);
   --metadata-input-text-color: var(--text-normal);
   --metadata-property-background-hover: var(--background-modifier-hover);
@@ -140,11 +166,16 @@ body {
   --tag-radius: 999px;
   --checkbox-radius: var(--radius-s);
   --blockquote-border-thickness: 2px;
+  --hr-thickness: 1px;
+  --link-decoration-thickness: 1px;
   --code-border-width: 1px;
   --code-radius: var(--radius-s);
-  --callout-border-width: 1px;
-  --callout-border-opacity: 0.48;
+
+  /* Section 09 draws the start rule; the native frame stays off. */
+  --callout-border-width: 0;
+  --callout-border-opacity: 1;
   --callout-radius: var(--radius-m);
+  --callout-padding: var(--size-4-3) var(--size-4-4);
   --callout-title-weight: 600;
   --callout-blend-mode: normal;
   --callout-important: var(--color-yellow);
@@ -239,7 +270,6 @@ body {
   --tag-border-color-hover: var(--aurenyx-brass);
   --blockquote-border-color: var(--aurenyx-teal);
   --blockquote-color: var(--text-muted);
-  --blockquote-background-color: var(--background-primary-alt);
   --code-background: var(--background-primary-alt);
   --code-normal: var(--text-normal);
   --code-comment: var(--text-faint);
@@ -270,7 +300,7 @@ body {
   --nav-item-background-hover: var(--aurenyx-dark-3);
   --nav-item-background-active: var(--aurenyx-dark-2);
   --nav-item-background-selected: var(--aurenyx-dark-3);
-  --tab-background-active: var(--aurenyx-dark-2);
+  --tab-background-active: var(--aurenyx-obsidian);
   --tab-container-background: var(--aurenyx-carbon);
   --tab-divider-color: var(--aurenyx-dark-5);
   --tab-outline-color: var(--aurenyx-dark-5);
@@ -297,6 +327,7 @@ body {
   --graph-node-tag: var(--aurenyx-teal-ink);
   --graph-node-attachment: var(--aurenyx-blue-ink);
   --graph-node-unresolved: var(--aurenyx-coral-ink);
+  --aurenyx-callout-field: var(--aurenyx-carbon);
   --canvas-background: var(--aurenyx-obsidian);
   --canvas-card-label-color: var(--text-faint);
   --canvas-color-1: var(--aurenyx-coral);
@@ -387,7 +418,6 @@ body {
   --tag-border-color-hover: #866C32;
   --blockquote-border-color: var(--aurenyx-teal);
   --blockquote-color: var(--text-muted);
-  --blockquote-background-color: var(--background-primary-alt);
   --code-background: var(--background-primary-alt);
   --code-normal: var(--text-normal);
   --code-comment: var(--text-faint);
@@ -445,6 +475,7 @@ body {
   --graph-node-tag: var(--aurenyx-teal-ink);
   --graph-node-attachment: var(--aurenyx-blue-ink);
   --graph-node-unresolved: var(--aurenyx-coral-ink);
+  --aurenyx-callout-field: var(--aurenyx-light-1);
   --canvas-background: var(--aurenyx-ivory);
   --canvas-card-label-color: var(--text-faint);
   --canvas-color-1: #A54F44;
@@ -460,21 +491,21 @@ body {
    04 / TYPOGRAPHY — RESPECT NATIVE FONT OVERRIDES
    ========================================================================== */
 
-/* Font families, weights and line heights are configured through native
-   variables above, so Reading, Live Preview and user font choices agree. */
+/* Families, sizes, weights, tracking and line heights are configured through
+   native variables above, so Reading, Live Preview and user font choices
+   agree. Only what no variable reaches is set here. */
+
+/* Long editorial titles break into even lines instead of leaving a single
+   word under a full measure. */
 .inline-title,
-.markdown-rendered :is(h1, h2, h3),
-.markdown-source-view.mod-cm6 :is(.cm-header-1, .cm-header-2, .cm-header-3) {
-  letter-spacing: -0.012em;
+.markdown-rendered :is(h1, h2, h3) {
+  text-wrap: balance;
 }
 
-.markdown-rendered :is(h4, h5, h6),
-.markdown-source-view.mod-cm6 :is(.cm-header-4, .cm-header-5, .cm-header-6) {
-  letter-spacing: 0.01em;
-}
-
+/* Evidence is shown literally: no programming ligatures in inline or fenced
+   code, so `===` reads as three characters rather than a drawn bar. */
 .markdown-rendered code,
-.markdown-source-view.mod-cm6 .cm-inline-code {
+.markdown-source-view.mod-cm6 :is(.cm-inline-code, .cm-hmd-codeblock) {
   font-variant-ligatures: none;
 }
 
@@ -533,9 +564,23 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
   background: color-mix(in oklch, var(--background-secondary) 42%, transparent);
 }
 
+/* A quotation is a cited statement, not a panel: the Teal evidence rule and
+   the editorial face mark it, with no fill competing with callouts. */
 .markdown-rendered blockquote {
-  padding-block: 0.55em;
-  padding-inline: 1em;
+  padding-block: 0.1em;
+  padding-inline: 1.1em 0;
+  font-family: var(--aurenyx-font-display);
+}
+
+/* Callouts render as widgets in Live Preview, so this reaches only quotes. */
+.markdown-source-view.mod-cm6.is-live-preview .cm-quote {
+  font-family: var(--aurenyx-font-display);
+}
+
+/* Links stay underlined for recognition; a lower rule clears descenders. */
+.markdown-rendered :is(.internal-link, .external-link),
+.markdown-source-view.mod-cm6 :is(.cm-hmd-internal-link, .cm-link, .cm-url) .cm-underline {
+  text-underline-offset: 0.22em;
 }
 
 .markdown-rendered mark,
@@ -566,9 +611,12 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
    07 / PROPERTIES — EVIDENCE LAYER
    ========================================================================== */
 
+/* The register label follows the Corporate Design's small tracked caps. */
 .metadata-properties-heading {
   color: var(--text-muted);
-  letter-spacing: 0.035em;
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -600,12 +648,34 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
    09 / CALLOUTS — EXPLICIT SEMANTICS
    ========================================================================== */
 
+/* Perspectives read as entries of one register, as in the Corporate Design
+   decision space: one neutral raised field for every role, a start rule in
+   the role color and the role named in the title. The field carries no tint:
+   color marks the role, never the surface, so a page of perspectives stays a
+   neutral register with the human decision as its only focal field. */
+.callout {
+  background-color: var(--aurenyx-callout-field);
+  border-inline-start-width: 2px;
+  border-start-start-radius: var(--radius-s);
+  border-end-start-radius: var(--radius-s);
+}
+
 .callout-title {
   font-family: var(--font-interface);
 }
 
 .callout-content {
   color: var(--text-normal);
+}
+
+/* Paragraph margins otherwise double the padding at both ends of a short
+   entry. Only the outermost blocks are trimmed; nested content is native. */
+.callout-content > :first-child {
+  margin-block-start: 0.45em;
+}
+
+.callout-content > :last-child {
+  margin-block-end: 0;
 }
 
 /* Obsidian 1.13+ accepts CSS colors (not RGB channel tuples).
@@ -650,8 +720,12 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
   --callout-icon: lucide-split;
 }
 
-/* A distinct neutral field and stronger edge separate the authored decision
-   from advisory synthesis AND Shadow. No generated approval/status labels. */
+/* The human decision is the one place the theme spends its boldness. On
+   screen it takes the opposite field of the current mode, as the Corporate
+   Design sets "Your decision" in Ivory inside the dark decision space and in
+   Obsidian inside a light report: advice sits in the register, the decision
+   closes it. It is still only the author's text; the theme adds no approval
+   or status label. Print keeps the neutral field below. */
 .callout[data-callout="human-decision"],
 .callout[data-callout="decision"] {
   --callout-color: var(--color-yellow);
@@ -659,13 +733,163 @@ body.mod-rtl :is(.nav-file-title.is-active, .suggestion-item.is-selected,
 
   background-color: var(--background-primary-alt);
   border-inline-start-width: 3px;
-  border-inline-start-color: var(--callout-color);
+
+  /* The mark's vector, used once: a bevel at the reading end of the title
+     edge points the register toward the author's decision. Logical, so it
+     follows RTL; engines without corner-shape keep a rounded corner. */
+  border-start-end-radius: 14px;
+  corner-start-end-shape: bevel;
 }
 
 /* Direct children keep nested perspectives out of the decision's type style. */
 .callout[data-callout="human-decision"] > .callout-title,
 .callout[data-callout="decision"] > .callout-title {
   font-family: var(--aurenyx-font-display);
+  font-size: 1.08em;
+  letter-spacing: -0.004em;
+}
+
+/* Custom properties resolve where they are declared, so every token the
+   decision's content reads is restated for the opposite field rather than
+   inherited from the body. Values mirror sections 02 and 03. */
+@media screen {
+  .theme-dark .callout[data-callout="human-decision"],
+  .theme-dark .callout[data-callout="decision"] {
+    color-scheme: light;
+
+    --aurenyx-callout-field: var(--aurenyx-light-1);
+    --background-primary: var(--aurenyx-ivory);
+    --background-primary-alt: var(--aurenyx-light-1);
+    --background-secondary: var(--aurenyx-light-2);
+    --background-modifier-hover: var(--aurenyx-light-2);
+    --background-modifier-border: var(--aurenyx-light-4);
+    --background-modifier-border-hover: var(--aurenyx-light-5);
+    --background-modifier-border-focus: #695425;
+    --interactive-normal: var(--aurenyx-light-1);
+    --interactive-hover: var(--aurenyx-light-2);
+    --text-normal: var(--aurenyx-obsidian);
+    --text-muted: #4E5558;
+    --text-faint: #5B5E5E;
+    --text-accent: #695425;
+    --text-accent-hover: #5D491E;
+    --text-selection: color-mix(in oklch, #B99A58 35%, transparent);
+    --text-highlight-bg: color-mix(in oklch, #B99A58 24%, transparent);
+    --caret-color: #866C32;
+    --italic-color: #4E5558;
+    --icon-color: #4E5558;
+    --icon-color-hover: var(--aurenyx-obsidian);
+    --collapse-icon-color: #5B5E5E;
+    --list-marker-color: #5B5E5E;
+    --color-red: #8B4038;
+    --color-orange: #8B4038;
+    --color-pink: #8B4038;
+    --color-yellow: #695425;
+    --color-green: #2C5C58;
+    --color-cyan: #2C5C58;
+    --color-blue: #375882;
+    --color-purple: #375882;
+    --link-color: #375882;
+    --link-color-hover: #294970;
+    --link-external-color: #2C5C58;
+    --link-external-color-hover: #244D4A;
+    --link-unresolved-color: #5B5E5E;
+    --tag-color: #4E5558;
+    --tag-color-hover: var(--aurenyx-obsidian);
+    --tag-background: var(--aurenyx-light-1);
+    --tag-background-hover: var(--aurenyx-light-2);
+    --tag-border-color: var(--aurenyx-light-4);
+    --tag-border-color-hover: #866C32;
+    --blockquote-color: #4E5558;
+    --code-background: var(--aurenyx-light-1);
+    --code-normal: var(--aurenyx-obsidian);
+    --code-comment: #5B5E5E;
+    --code-function: #695425;
+    --code-important: #8B4038;
+    --code-keyword: #375882;
+    --code-operator: #4E5558;
+    --code-property: #2C5C58;
+    --code-punctuation: #5B5E5E;
+    --code-string: #2C5C58;
+    --code-tag: #8B4038;
+    --code-value: #695425;
+    --table-border-color: var(--aurenyx-light-4);
+    --table-header-background: var(--aurenyx-light-2);
+    --table-row-alt-background: var(--aurenyx-light-1);
+    --hr-color: var(--aurenyx-light-4);
+    --checkbox-border-color: #74736F;
+    --checklist-done-color: #5B5E5E;
+
+    background-color: var(--background-primary);
+  }
+
+  .theme-light .callout[data-callout="human-decision"],
+  .theme-light .callout[data-callout="decision"] {
+    color-scheme: dark;
+
+    --aurenyx-callout-field: var(--aurenyx-carbon);
+    --background-primary: var(--aurenyx-obsidian);
+    --background-primary-alt: var(--aurenyx-dark-2);
+    --background-secondary: var(--aurenyx-carbon);
+    --background-modifier-hover: var(--aurenyx-dark-3);
+    --background-modifier-border: var(--aurenyx-dark-5);
+    --background-modifier-border-hover: var(--aurenyx-dark-6);
+    --background-modifier-border-focus: var(--aurenyx-brass);
+    --interactive-normal: var(--aurenyx-carbon);
+    --interactive-hover: var(--aurenyx-dark-3);
+    --text-normal: var(--aurenyx-ivory);
+    --text-muted: #B0B2AE;
+    --text-faint: #899196;
+    --text-accent: #C4A767;
+    --text-accent-hover: #D3BA80;
+    --text-selection: color-mix(in oklch, #B99A58 40%, transparent);
+    --text-highlight-bg: color-mix(in oklch, #B99A58 22%, transparent);
+    --caret-color: var(--aurenyx-brass);
+    --italic-color: #B0B2AE;
+    --icon-color: #B0B2AE;
+    --icon-color-hover: var(--aurenyx-ivory);
+    --collapse-icon-color: #899196;
+    --list-marker-color: #899196;
+    --color-red: #D68A7E;
+    --color-orange: #D68A7E;
+    --color-pink: #D68A7E;
+    --color-yellow: #C4A767;
+    --color-green: #69A49F;
+    --color-cyan: #69A49F;
+    --color-blue: #7C9AC0;
+    --color-purple: #7C9AC0;
+    --link-color: #7C9AC0;
+    --link-color-hover: #A2BBDC;
+    --link-external-color: #69A49F;
+    --link-external-color-hover: #8DBDB8;
+    --link-unresolved-color: #899196;
+    --tag-color: #B0B2AE;
+    --tag-color-hover: var(--aurenyx-ivory);
+    --tag-background: var(--aurenyx-carbon);
+    --tag-background-hover: var(--aurenyx-dark-3);
+    --tag-border-color: var(--aurenyx-dark-5);
+    --tag-border-color-hover: var(--aurenyx-brass);
+    --blockquote-color: #B0B2AE;
+    --code-background: var(--aurenyx-dark-2);
+    --code-normal: var(--aurenyx-ivory);
+    --code-comment: #899196;
+    --code-function: #C4A767;
+    --code-important: #D68A7E;
+    --code-keyword: #7C9AC0;
+    --code-operator: #B0B2AE;
+    --code-property: #69A49F;
+    --code-punctuation: #899196;
+    --code-string: #69A49F;
+    --code-tag: #D68A7E;
+    --code-value: #C4A767;
+    --table-border-color: var(--aurenyx-dark-5);
+    --table-header-background: var(--aurenyx-carbon);
+    --table-row-alt-background: var(--aurenyx-dark-1);
+    --hr-color: var(--aurenyx-dark-5);
+    --checkbox-border-color: #899196;
+    --checklist-done-color: #899196;
+
+    background-color: var(--background-primary);
+  }
 }
 
 /* ==========================================================================
@@ -779,6 +1003,13 @@ body :is(button, a[href], input, select, textarea, [tabindex],
   }
 }
 
+/* Native fields already draw a 2px focus ring flush with their edge. Laying
+   the outline over it keeps one ring instead of two concentric ones; fields
+   whose native ring is zeroed, such as properties, still get the outline. */
+body :is(input, textarea, select):focus-visible {
+  outline-offset: 0;
+}
+
 /* ==========================================================================
    14 / MOBILE — SAME SYSTEM ON A SMALLER SURFACE
    ========================================================================== */
@@ -831,6 +1062,7 @@ body :is(button, a[href], input, select, textarea, [tabindex],
     --background-secondary: var(--aurenyx-light-2);
     --background-secondary-alt: var(--aurenyx-light-3);
     --background-modifier-border: var(--aurenyx-light-4);
+    --aurenyx-callout-field: var(--aurenyx-light-0);
     --text-normal: var(--aurenyx-obsidian);
     --text-muted: #4E5558;
     --text-faint: #5B5E5E;
