@@ -8,7 +8,7 @@
     "check": "npm run lint && npm run validate"
   },
   "devDependencies": {
-    "stylelint": "^17.16.0",
+    "stylelint": "^18.0.0",
     "stylelint-config-obsidianmd": "^0.1.0"
   },
   "private": true
